@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Hacker School | Useful Platitudes]]></title>
+  <link href="http://danielmendel.github.com/blog/categories/hacker-school/atom.xml" rel="self"/>
+  <link href="http://danielmendel.github.com/"/>
+  <updated>2013-02-20T18:03:20-05:00</updated>
+  <id>http://danielmendel.github.com/</id>
+  <author>
+    <name><![CDATA[Daniel Mendel]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Cool stuff I learned doing code review]]></title>
+    <link href="http://danielmendel.github.com/blog/2013/02/20/cool-stuff-i-learned-doing-code-review/"/>
+    <updated>2013-02-20T16:27:00-05:00</updated>
+    <id>http://danielmendel.github.com/blog/2013/02/20/cool-stuff-i-learned-doing-code-review</id>
+    <content type="html"><![CDATA[<p>So a major staple of <a href="http://www.hackerschool.com">Hacker School</a> is doing ( and getting ) lots and lots of code reviews.  I think this is <em>awesome</em>, and I've been working on a lot of reviewing this week.  The most rewarding thing about reviewing a language you are comfortable in is that you learn all kinds of things you might never come across when left to your own ingrained design patterns.  This is a short round up of some neat things I learned about <code>javascript</code> this week.</p>
+
+<!-- more -->
+
+
+<h2>Not just syntax!</h2>
+
+<p><code>javascript
+function foo(){ return true };
+var bar = function(){ return true };
+</code>
+I had always assumed that the only difference between these styles of defining a function was syntactic -- however, that's not true! . There is actually a crucial difference at runtime.</p>
+
+<p><code>javascript
+foo();  // true
+bar();  // ERROR! bar is not defined.
+function foo(){ return true };
+var bar = function(){ return true };
+</code>
+This is one of those things now I know it, seems obvious.  The essential difference is that  javascript loads all of the function definitions in a chunk of code before it begins execution.  When it encounters <code>foo()</code> it already has a reference to the function definition below.  However, <strong>the <code>bar</code> function is actually <em>anonymous</em> until the line assigning it to <code>bar</code> is executed</strong> -- because this is <em>after</em> the line that tries to run <code>bar()</code> the call fails.</p>
+
+<p>-- with <a href="https://github.com/alliejones">Allie Jones</a></p>
+
+<h2>Do While</h2>
+
+<p>For some reason I have simply never really used javascript's <code>do {} while ()</code> loop.  I use <code>while(){}</code> style loops all the time and somehow in the back of my mind must have foolishly assumed that they were all I'd ever need for a <code>while</code> ( pun! ).  I was wrong, there are cases where this syntax is super useful, consider this essential difference between the two.</p>
+
+<p>``` javascript
+do{ var a = 1; }while( false );
+while( false ){ var b = 1; };</p>
+
+<p>a; // 1
+b; // undefined
+<code>``
+**</code>do` always fires at least once.**  This makes it perfect for things like collision prevention without having to init a variable separately.</p>
+
+<p><code>javascript
+// assume uniqueRandoms === { ... };
+do{ var a = Math.random() } while( uniqueRandoms.hasOwnProperty(a) )
+</code></p>
+
+<p>-- with <a href="https://github.com/wija">Bill Abresch</a></p>
+
+<h2>Applied Math</h2>
+
+<p>Somehow I had never considered the pure simple genius of this strategy.</p>
+
+<p><code>javascript
+var arr = [ 20, 124, 240, 12, 10, 2 ];
+Math.max.apply( Math, arr );  // 240
+</code></p>
+
+<p>-- with <a href="https://github.com/greggreggreg7">Greg Altman</a> and <a href="https://github.com/patrickmestabrook">Patrick Estabrook</a></p>
+]]></content>
+  </entry>
+  
+</feed>

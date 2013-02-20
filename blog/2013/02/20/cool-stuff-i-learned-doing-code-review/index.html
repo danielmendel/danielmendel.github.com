@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Cool stuff I learned doing code review - Useful Platitudes</title>
+  <meta name="author" content="Daniel Mendel">
+
+  
+  <meta name="description" content="So a major staple of Hacker School is doing ( and getting ) lots and lots of code reviews. I think this is awesome, and I&#8217;ve been working on a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://danielmendel.github.com/blog/2013/02/20/cool-stuff-i-learned-doing-code-review/">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Useful Platitudes" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Useful Platitudes</a><img src="/images/me.png" width="50" style="position:relative;top:15px;" /></h1>
+  
+    <h2>Notes on programming by Daniel Mendel</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:danielmendel.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Cool Stuff I Learned Doing Code Review</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-20T16:27:00-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>So a major staple of <a href="http://www.hackerschool.com">Hacker School</a> is doing ( and getting ) lots and lots of code reviews.  I think this is <em>awesome</em>, and I&#8217;ve been working on a lot of reviewing this week.  The most rewarding thing about reviewing a language you are comfortable in is that you learn all kinds of things you might never come across when left to your own ingrained design patterns.  This is a short round up of some neat things I learned about <code>javascript</code> this week.</p>
+
+<!-- more -->
+
+
+<h2>Not just syntax!</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">foo</span><span class="p">(){</span> <span class="k">return</span> <span class="kc">true</span> <span class="p">};</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">bar</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> <span class="k">return</span> <span class="kc">true</span> <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I had always assumed that the only difference between these styles of defining a function was syntactic &#8211; however, that&#8217;s not true! . There is actually a crucial difference at runtime.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">foo</span><span class="p">();</span>  <span class="c1">// true</span>
+</span><span class='line'><span class="nx">bar</span><span class="p">();</span>  <span class="c1">// ERROR! bar is not defined.</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">foo</span><span class="p">(){</span> <span class="k">return</span> <span class="kc">true</span> <span class="p">};</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">bar</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> <span class="k">return</span> <span class="kc">true</span> <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is one of those things now I know it, seems obvious.  The essential difference is that  javascript loads all of the function definitions in a chunk of code before it begins execution.  When it encounters <code>foo()</code> it already has a reference to the function definition below.  However, <strong>the <code>bar</code> function is actually <em>anonymous</em> until the line assigning it to <code>bar</code> is executed</strong> &#8211; because this is <em>after</em> the line that tries to run <code>bar()</code> the call fails.</p>
+
+<p>&#8211; with <a href="https://github.com/alliejones">Allie Jones</a></p>
+
+<h2>Do While</h2>
+
+<p>For some reason I have simply never really used javascript&#8217;s <code>do {} while ()</code> loop.  I use <code>while(){}</code> style loops all the time and somehow in the back of my mind must have foolishly assumed that they were all I&#8217;d ever need for a <code>while</code> ( pun! ).  I was wrong, there are cases where this syntax is super useful, consider this essential difference between the two.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">do</span><span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span><span class="k">while</span><span class="p">(</span> <span class="kc">false</span> <span class="p">);</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span> <span class="kc">false</span> <span class="p">){</span> <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">a</span><span class="p">;</span> <span class="c1">// 1</span>
+</span><span class='line'><span class="nx">b</span><span class="p">;</span> <span class="c1">// undefined</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong><code>do</code> always fires at least once.</strong>  This makes it perfect for things like collision prevention without having to init a variable separately.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// assume uniqueRandoms === { ... };</span>
+</span><span class='line'><span class="k">do</span><span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="p">}</span> <span class="k">while</span><span class="p">(</span> <span class="nx">uniqueRandoms</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&#8211; with <a href="https://github.com/wija">Bill Abresch</a></p>
+
+<h2>Applied Math</h2>
+
+<p>Somehow I had never considered the pure simple genius of this strategy.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">124</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span> <span class="p">];</span>
+</span><span class='line'><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span> <span class="nb">Math</span><span class="p">,</span> <span class="nx">arr</span> <span class="p">);</span>  <span class="c1">// 240</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&#8211; with <a href="https://github.com/greggreggreg7">Greg Altman</a> and <a href="https://github.com/patrickmestabrook">Patrick Estabrook</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Daniel Mendel</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-20T16:27:00-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hacker-school/'>Hacker School</a>, <a class='category' href='/blog/categories/code-review/'>code review</a>, <a class='category' href='/blog/categories/javascript/'>javascript</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://danielmendel.github.com/blog/2013/02/20/cool-stuff-i-learned-doing-code-review/" data-via="" data-counturl="http://danielmendel.github.com/blog/2013/02/20/cool-stuff-i-learned-doing-code-review/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/20/subclassing-javascript-arrays/" title="Previous Post: Subclassing Javascript Arrays">&laquo; Subclassing Javascript Arrays</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/20/cool-stuff-i-learned-doing-code-review/">Cool stuff I learned doing code review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/20/subclassing-javascript-arrays/">Subclassing Javascript Arrays</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/danielmendel">@danielmendel</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'danielmendel',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Daniel Mendel -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
