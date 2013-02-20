@@ -63,7 +63,7 @@ function addCodeLineNumbers() {
         tableMiddle = '</pre></td><td class="code">',
         tableEnd = '</td></tr></tbody></table>',
         count = $('.line', code).length;
-    for (var i=1;i<=count; i++) {
+    for (var i=0;i<=count; i++) {
       lineNumbers += '<span class="line-number">'+i+'</span>\n';
     }
     var table = tableStart + lineNumbers + tableMiddle + '<pre>'+$('pre', code).html()+'</pre>' + tableEnd;

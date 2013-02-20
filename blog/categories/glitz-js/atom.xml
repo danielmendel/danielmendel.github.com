@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: glitz.js | Useful Platitudes]]></title>
+  <link href="http://danielmendel.github.com/blog/categories/glitz-js/atom.xml" rel="self"/>
+  <link href="http://danielmendel.github.com/"/>
+  <updated>2013-02-20T16:01:39-05:00</updated>
+  <id>http://danielmendel.github.com/</id>
+  <author>
+    <name><![CDATA[Daniel Mendel Espeset]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Subclassing Javascript Arrays]]></title>
+    <link href="http://danielmendel.github.com/blog/2013/02/20/subclassing-javascript-arrays/"/>
+    <updated>2013-02-20T03:44:00-05:00</updated>
+    <id>http://danielmendel.github.com/blog/2013/02/20/subclassing-javascript-arrays</id>
+    <content type="html"><![CDATA[<p>When I started working on the animation framework <a href="https://github.com/danielmendel/glitz.js"><code>glitz.js</code></a>, I wanted an easy syntax for expressing and traversing a nested tree of <code>Renderable</code> objects.  I thought, "<em>Why not implement it as an array?</em>" Since the scene graph would need to be iterated over very quickly during the render loop, it would be great to just represent the whole thing as a multi-dimentional array -- <strong>essentially a subclass of array</strong> that had some additional properties and methods like <code>render</code> and <code>animate</code>.</p>
+
+<p><code>javascript
+var box1 = new Box({ x: 100, y: 100 });
+var box2 = new Box({ x: 110, y: 110 });
+box1.push( box2 );
+box1[0];       // box2
+box1.render(); // draws a box
+</code></p>
+
+<!-- more -->
+
+
+<h2><a id="naive"></a> 1. Ah, Naïveté</h2>
+
+<p>First I tried a simple approach.</p>
+
+<p>``` javascript
+var arrLike = { length: 0 };
+arrLike.push = function(){</p>
+
+<pre><code>Array.prototype.push.apply( this, arguments );
+</code></pre>
+
+<p>}
+arrLike.push('foo');
+arrLike<a href="https://github.com/danielmendel/glitz.js">0</a>   // 'foo'
+arrLike.length // 1
+<code>``
+Basically, you can invoke methods from the native</code>Array.prototype` on any object with a length and get array-like results.  This works because <strong>javascript objects allow numerical keys</strong>, so essentially what we end up with is:</p>
+
+<p>``` javascript
+var arrLike = {</p>
+
+<pre><code>0: 'foo'
+</code></pre>
+
+<p>  , length: 1
+};
+<code>``
+At first glance (eg, not in</code>IE&lt;8`), this seems to work great. However, <strong>there are hidden dragons</strong> -- let's compare some further manipulations to a native array.</p>
+
+<p>``` javascript
+var arr = new Array('foo');
+arr<a href="https://github.com/danielmendel/glitz.js">0</a>;         // 'foo'</p>
+
+<p>arr.length     = 0;
+arrLike.length = 0;
+arr<a href="https://github.com/danielmendel/glitz.js">0</a>;         // undefined
+arrLike<a href="https://github.com/danielmendel/glitz.js">0</a>      // 'foo'</p>
+
+<p>arr<a href="http://perfectionkills.com/how-ecmascript-5-still-does-not-allow-to-subclass-an-array">10</a>     = 'bar';
+arrLike<a href="http://perfectionkills.com/how-ecmascript-5-still-does-not-allow-to-subclass-an-array">10</a> = 'bar';
+arr.length;     // 11
+arrLike.length; // 0
+<code>``
+**Uh-oh**, there are obviously some drawbacks here.  First, **setting the length property of a proper</code>Array<code>to</code>0<code> clears the array**.  In fact, this is usually the [fastest method of clearing arrays][1].  Second, when you assign a value to an array index that is</code>> length<code>, then the native array will expand to contain it.  In short, **native arrays have a magical</code>length`** that we miss out on entirely with the naive approach.  As usual, more information can be found in the <a href="http://bclary.com/2004/11/07/#a-15.4">relevant section of the EMCAscript spec</a>.</p>
+
+<h2><a id="extension"></a>2. Direct extension</h2>
+
+<p>Okay, so my naive approach is dead in the water -- after grieving, I decided to try direct extension.  This is exactly what it sounds like: creating <code>Array</code> instances and copying a bunch of methods &amp; properties on to them directly.</p>
+
+<p>``` javascript
+var extension = {</p>
+
+<pre><code>x: 0
+</code></pre>
+
+<p>  , y: 0
+  , render: function(){ ... }
+  // ...
+};</p>
+
+<p>var Box = function( instanceProps ){</p>
+
+<pre><code>var arr = [], k;
+for( k in extension ){
+    if( extension.hasOwnProperty(k) )
+        arr[k] = extension[k];
+}
+for( k in instanceProps ){
+    if( instanceProps.hasOwnProperty(k) )
+        arr[k] = instanceProps[k];
+}
+return arr;
+</code></pre>
+
+<p>};
+```
+The outcome here is exactly what we want -- a native array with some extra methods and properties.  There's just one problem, <strong>compared to creating raw instances of a native array, it is <em>really, really slow</em></strong> -- for example, in Firefox 17.0, <a href="http://jsperf.com/subclassing-arrays-direct-extension-variations/3">it is 26 x slower</a> when adding just two properties.</p>
+
+<p>Now obviously there are a lot of use cases where this performance hit isn't particularly painful -- even at 1/26th speed you can still create many thousands of arrays per second, and probably most uses for <a href="https://github.com/danielmendel/glitz.js"><code>glitz.js</code></a> wouldn't suffer too badly here.  But, <strong>this is in an animation framework</strong> and if we can speed any part of it up by that much, it increases the domain it can operate in by a fair margin.  This brings us to...</p>
+
+<h2><a id="subclassing"></a>3. Having your cake and eating it inside of an iframe</h2>
+
+<p>Wouldn't it be the best if we could just subclass <code>Array</code> and add some methods to the <code>prototype</code>?  Of course this would contravine several of the golden rules of javascript best practices, first and foremost being <a href="http://www.nczonline.net/blog/2010/03/02/maintainable-javascript-dont-modify-objects-you-down-own/">don't modify objects you don't own</a>.  Another issue with this is that each user-defined <code>Renderable</code> subclass requires a different set of extentions to the <code>prototype</code> and <a href="http://perfectionkills.com/how-ecmascript-5-still-does-not-allow-to-subclass-an-array/#andrea_giammarchi_solution">trying to use prototypical inheritance</a> runs into the same issues as the <a href="#naive">naive solution</a>.</p>
+
+<p>Enter Dean Edwards <a href="http://dean.edwards.name/weblog/2006/11/hooray/">iframe sandbox solution</a> -- the idea here is that you create a hidden <code>&lt;iframe&gt;</code> and steal the <code>Array</code> object from the <code>iframe</code> execution context.</p>
+
+<p>``` javascript</p>
+
+<p>var iframe = document.createElement("iframe");</p>
+
+<pre><code>iframe.style.display = "none";
+document.body.appendChild(iframe);
+frames[frames.length - 1].document.write(
+  "&lt;script&gt;parent.myArray = Array;&lt;/script&gt;"
+);
+</code></pre>
+
+<p>myArray === Array // false
+myArray.prototype.foo = 'bar';</p>
+
+<p>var arr   = new Array(1,2,3);
+var myarr = new myArray(1,2,3);</p>
+
+<p>myarr.foo;        // 'bar'
+arr.foo;          // undefined
+```
+This works because browsers sandbox the javascript execution environments so that each frame owns a unique set of native objects.  Here we simply "borrow" ( read: steal ) one from a new iframe and send it back to our execution environment.  As you might imagine, this technique comes with some caveats:</p>
+
+<ul>
+<li>Keep that iframe around and attached to the DOM -- it still technically owns our array.</li>
+<li>This approach doesn't work in non-browser environments.</li>
+</ul>
+
+
+<p>Number 2 is not a problem this purpose as <a href="https://github.com/danielmendel/glitz.js"><code>glitz.js</code></a> is already tied to the browser in other ways.  Additionally, if it were ever to be ported to a server context this same methodology could be recreated with a slightly different technique, such as borrowing <code>Array</code> from a <code>VM</code> in <code>node.js</code>.</p>
+
+<p>Ultimately this is the technique I used for a major update to the way that <a href="https://github.com/danielmendel/glitz.js"><code>glitz.js</code></a> handles array subclassing under the hood in commit <a href="https://github.com/danielmendel/glitz.js/commit/5c5d183c7cbcdd26d669b40270745c5fddb9b539#L3R656"><code>5c5d183</code></a> and also ended up putting together <a href="https://github.com/danielmendel/gimme"><code>gimme</code></a> a tiny stand alone library to automate the process of "borrowing" natives.</p>
+
+<p>For the most comprehensive overview of the techniques for subclassing arrays in javascript, read <a href="http://perfectionkills.com/how-ecmascript-5-still-does-not-allow-to-subclass-an-array">How ECMAscript 5 still does not allow to subclass an array</a> [sic].</p>
+]]></content>
+  </entry>
+  
+</feed>
