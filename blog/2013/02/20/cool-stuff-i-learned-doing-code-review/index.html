@@ -30,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38700939-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -104,7 +116,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I had always assumed that the only difference between these styles of defining a function was syntactic &#8211; however, that&#8217;s not true! . There is actually a crucial difference at runtime.</p>
+<p>I had always assumed that the only difference between these styles of defining a function was syntactic &#8211; however, that&#8217;s not true! There is actually a crucial difference at runtime.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -117,7 +129,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This is one of those things now I know it, seems obvious.  The essential difference is that  javascript loads all of the function definitions in a chunk of code before it begins execution.  When it encounters <code>foo()</code> it already has a reference to the function definition below.  However, <strong>the <code>bar</code> function is actually <em>anonymous</em> until the line assigning it to <code>bar</code> is executed</strong> &#8211; because this is <em>after</em> the line that tries to run <code>bar()</code> the call fails.</p>
+<p>This is one of those things that now I know it, seems obvious.  The essential difference is that javascript loads all of the function definitions in a chunk of code before it begins execution.  When it encounters <code>foo()</code> it already has a reference to the function definition below.  However, <strong>the <code>bar</code> function is actually <em>anonymous</em> until the line assigning it to <code>bar</code> is executed</strong> &#8211; because this is <em>after</em> the line that tries to run <code>bar()</code> the call fails.</p>
 
 <p>&#8211; with <a href="https://github.com/alliejones">Allie Jones</a></p>
 

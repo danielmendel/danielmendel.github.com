@@ -4,7 +4,7 @@
   <title><![CDATA[Useful Platitudes]]></title>
   <link href="http://danielmendel.github.com/atom.xml" rel="self"/>
   <link href="http://danielmendel.github.com/"/>
-  <updated>2013-02-20T18:03:20-05:00</updated>
+  <updated>2013-02-21T10:51:31-05:00</updated>
   <id>http://danielmendel.github.com/</id>
   <author>
     <name><![CDATA[Daniel Mendel]]></name>
@@ -32,7 +32,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I had always assumed that the only difference between these styles of defining a function was syntactic &#8211; however, that&#8217;s not true! . There is actually a crucial difference at runtime.</p>
+<p>I had always assumed that the only difference between these styles of defining a function was syntactic &#8211; however, that&#8217;s not true! There is actually a crucial difference at runtime.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -45,7 +45,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This is one of those things now I know it, seems obvious.  The essential difference is that  javascript loads all of the function definitions in a chunk of code before it begins execution.  When it encounters <code>foo()</code> it already has a reference to the function definition below.  However, <strong>the <code>bar</code> function is actually <em>anonymous</em> until the line assigning it to <code>bar</code> is executed</strong> &#8211; because this is <em>after</em> the line that tries to run <code>bar()</code> the call fails.</p>
+<p>This is one of those things that now I know it, seems obvious.  The essential difference is that javascript loads all of the function definitions in a chunk of code before it begins execution.  When it encounters <code>foo()</code> it already has a reference to the function definition below.  However, <strong>the <code>bar</code> function is actually <em>anonymous</em> until the line assigning it to <code>bar</code> is executed</strong> &#8211; because this is <em>after</em> the line that tries to run <code>bar()</code> the call fails.</p>
 
 <p>&#8211; with <a href="https://github.com/alliejones">Allie Jones</a></p>
 
