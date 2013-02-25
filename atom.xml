@@ -4,7 +4,7 @@
   <title><![CDATA[Useful Platitudes]]></title>
   <link href="http://danielmendel.github.com/atom.xml" rel="self"/>
   <link href="http://danielmendel.github.com/"/>
-  <updated>2013-02-21T10:51:31-05:00</updated>
+  <updated>2013-02-25T18:33:44-05:00</updated>
   <id>http://danielmendel.github.com/</id>
   <author>
     <name><![CDATA[Daniel Mendel]]></name>
@@ -12,6 +12,130 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[New compound animations in glitz.js]]></title>
+    <link href="http://danielmendel.github.com/blog/2013/02/25/new-compound-animations-in-glitz-dot-js/"/>
+    <updated>2013-02-25T17:46:00-05:00</updated>
+    <id>http://danielmendel.github.com/blog/2013/02/25/new-compound-animations-in-glitz-dot-js</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/danielmendel/glitz.js"><code>glitz.js</code></a> support for defining animations is pretty flexible, but it is designed for fairly simple interactive behaviors and has, until now, lacked a good method for building complex animations from component parts.  I&#8217;ve wanted to add a good API for to do this for a while and this week I finally got a chance to do so, while pairing with <a href="https://github.com/zachallaun">Zach Allaun</a> at <a href="http://www.hackerschool.com">Hacker School</a>.  I&#8217;m really excited about what we came up.  First, I&#8217;ll explain the state of affairs before our changes.</p>
+
+<!-- more -->
+
+
+<h2>Good, but not great</h2>
+
+<p>The animation API that glitz implements is very straightforward, if you&#8217;ve ever animated <code>DOM</code> elements with <code>jQuery.animate</code> then the syntax should be pretty familiar.  All of the following animations are equivalent.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// transform ( duration defaults to 250ms )</span>
+</span><span class='line'><span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span> <span class="p">});</span>
+</span><span class='line'><span class="c1">// transform, duration</span>
+</span><span class='line'><span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span> <span class="p">},</span> <span class="mi">5000</span> <span class="p">);</span>
+</span><span class='line'><span class="c1">// transform, callback</span>
+</span><span class='line'><span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(){</span> <span class="p">...</span> <span class="p">});</span>
+</span><span class='line'><span class="c1">// transform, duration, callback</span>
+</span><span class='line'><span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span> <span class="p">},</span> <span class="mi">5000</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span> <span class="p">...</span> <span class="p">});</span>
+</span><span class='line'><span class="c1">// transform, options</span>
+</span><span class='line'><span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">duration</span><span class="o">:</span> <span class="mi">5000</span><span class="p">,</span> <span class="nx">done</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span> <span class="p">...</span> <span class="p">}});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If <code>animate</code> is invoked on an object while that object is still performing a previous animation, the current animation is immediately canceled and the new one begins.  This is the default behavior because interactivity requires an immediate response from objects.  If you want to build a complex series of animations, you can do so using nested callbacks.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// move left, then down, then fade the color</span>
+</span><span class='line'><span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span> <span class="p">},</span> <span class="mi">5000</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">({</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">100</span> <span class="p">},</span> <span class="mi">5000</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>        <span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">({</span> <span class="nx">strokeColor</span><span class="o">:</span> <span class="s1">&#39;#f00&#39;</span> <span class="p">},</span> <span class="mi">5000</span> <span class="p">);</span>
+</span><span class='line'>    <span class="p">})</span>
+</span><span class='line'><span class="p">})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can imagine, this gets to be pretty ugly pretty quickly if you want even fairly simple sets of actions.  Futhermore, it&#8217;s difficult to store animation routines and run them more dynamically &#8211; users would have to implement their own methodology which would, at the most simple, look something like this&#8230;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">anims</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">left</span><span class="o">:</span>    <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span> <span class="p">}</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">down</span><span class="o">:</span>    <span class="p">{</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">100</span> <span class="p">}</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">turnRed</span><span class="o">:</span> <span class="p">{</span> <span class="nx">strokeColor</span><span class="o">:</span> <span class="s1">&#39;#f00&#39;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">run</span><span class="p">(</span> <span class="nx">series</span> <span class="p">){</span>
+</span><span class='line'>    <span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span> <span class="nx">box</span><span class="p">,</span> <span class="nx">anims</span><span class="p">[</span><span class="nx">series</span><span class="p">.</span><span class="nx">shift</span><span class="p">()],</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">run</span><span class="p">(</span> <span class="nx">series</span> <span class="p">)</span> <span class="p">}</span> <span class="p">)</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="nx">runSeries</span><span class="p">([</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;down&#39;</span><span class="p">,</span> <span class="s1">&#39;turnRed&#39;</span> <span class="p">]);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Gross &#8211; we figured we could definitely do better than that.</p>
+
+<h2>Enter Compositions</h2>
+
+<p>First we thought it would be good if you could compose a series of animations like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// move left, then down, then fade the color</span>
+</span><span class='line'><span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">([{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">100</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">strokeColor</span><span class="o">:</span> <span class="s1">&#39;#f00&#39;</span> <span class="p">}]);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is already clearly better than the alternative, but then we decided we had to include support to create <em>parallel</em> animations as well, something that was not possible in any way shape or form before.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// move left and down simultaniously but with different end times</span>
+</span><span class='line'><span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">([[{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nx">duration</span><span class="o">:</span> <span class="mi">500</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nx">duration</span><span class="o">:</span> <span class="mi">1000</span> <span class="p">}]]);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>By combining these you can compose a series of parallel animations:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">([[{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">100</span> <span class="p">}],[{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">0</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">strokeColor</span><span class="o">:</span> <span class="s1">&#39;#f00&#39;</span> <span class="p">}]]);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or parallel series:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">([[[{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">100</span> <span class="p">}],[{</span> <span class="nx">strokeColor</span><span class="o">:</span> <span class="s1">&#39;#f00&#39;</span><span class="p">},</span> <span class="p">{</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">0</span> <span class="p">}]]]);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or any combination thereof:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">box</span><span class="p">.</span><span class="nx">animate</span><span class="p">([{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">100</span> <span class="p">},</span> <span class="p">[{</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">0</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">strokeColor</span><span class="o">:</span> <span class="s1">&#39;#f00&#39;</span> <span class="p">},</span> <span class="p">[{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">0</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">strokeColor</span><span class="o">:</span> <span class="s1">&#39;#0f0&#39;</span> <span class="p">}]]]);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s it! You can <a href="https://github.com/danielmendel/glitz.js">fork glitz.js</a> and try them out for yourself.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Cool stuff I learned doing code review]]></title>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: animation | Useful Platitudes]]></title>
+  <link href="http://danielmendel.github.com/blog/categories/animation/atom.xml" rel="self"/>
+  <link href="http://danielmendel.github.com/"/>
+  <updated>2013-02-25T18:33:44-05:00</updated>
+  <id>http://danielmendel.github.com/</id>
+  <author>
+    <name><![CDATA[Daniel Mendel]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New compound animations in glitz.js]]></title>
+    <link href="http://danielmendel.github.com/blog/2013/02/25/new-compound-animations-in-glitz-dot-js/"/>
+    <updated>2013-02-25T17:46:00-05:00</updated>
+    <id>http://danielmendel.github.com/blog/2013/02/25/new-compound-animations-in-glitz-dot-js</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/danielmendel/glitz.js"><code>glitz.js</code></a> support for defining animations is pretty flexible, but it is designed for fairly simple interactive behaviors and has, until now, lacked a good method for building complex animations from component parts.  I've wanted to add a good API for to do this for a while and this week I finally got a chance to do so, while pairing with <a href="https://github.com/zachallaun">Zach Allaun</a> at <a href="http://www.hackerschool.com">Hacker School</a>.  I'm really excited about what we came up.  First, I'll explain the state of affairs before our changes.</p>
+
+<!-- more -->
+
+
+<h2>Good, but not great</h2>
+
+<p>The animation API that glitz implements is very straightforward, if you've ever animated <code>DOM</code> elements with <code>jQuery.animate</code> then the syntax should be pretty familiar.  All of the following animations are equivalent.</p>
+
+<p><code>javascript
+// transform ( duration defaults to 250ms )
+box.animate({ x: 100 });
+// transform, duration
+box.animate({ x: 100 }, 5000 );
+// transform, callback
+box.animate({ x: 100 }, function(){ ... });
+// transform, duration, callback
+box.animate({ x: 100 }, 5000, function(){ ... });
+// transform, options
+box.animate({ x: 100 }, { duration: 5000, done: function(){ ... }});
+</code>
+If <code>animate</code> is invoked on an object while that object is still performing a previous animation, the current animation is immediately canceled and the new one begins.  This is the default behavior because interactivity requires an immediate response from objects.  If you want to build a complex series of animations, you can do so using nested callbacks.</p>
+
+<p>``` javascript
+// move left, then down, then fade the color
+box.animate({ x: 100 }, 5000, function(){</p>
+
+<pre><code>box.animate({ y: 100 }, 5000, function(){
+    box.animate({ strokeColor: '#f00' }, 5000 );
+})
+</code></pre>
+
+<p>})
+```
+As you can imagine, this gets to be pretty ugly pretty quickly if you want even fairly simple sets of actions.  Futhermore, it's difficult to store animation routines and run them more dynamically -- users would have to implement their own methodology which would, at the most simple, look something like this...</p>
+
+<p>``` javascript
+var anims = {</p>
+
+<pre><code>left:    { x: 100 }
+</code></pre>
+
+<p>  , down:    { y: 100 }
+  , turnRed: { strokeColor: '#f00' }
+}
+function run( series ){</p>
+
+<pre><code>box.animate.call( box, anims[series.shift()], function(){ run( series ) } ) 
+</code></pre>
+
+<p>};
+runSeries([ 'left', 'down', 'turnRed' ]);
+```
+Gross -- we figured we could definitely do better than that.</p>
+
+<h2>Enter Compositions</h2>
+
+<p>First we thought it would be good if you could compose a series of animations like this:</p>
+
+<p><code>javascript
+// move left, then down, then fade the color
+box.animate([{ x: 100 }, { y: 100 }, { strokeColor: '#f00' }]);
+</code>
+This is already clearly better than the alternative, but then we decided we had to include support to create <em>parallel</em> animations as well, something that was not possible in any way shape or form before.</p>
+
+<p><code>javascript
+// move left and down simultaniously but with different end times
+box.animate([[{ x: 100, duration: 500 }, { y: 50, duration: 1000 }]]);
+</code>
+By combining these you can compose a series of parallel animations:</p>
+
+<p><code>javascript
+box.animate([[{ x: 100 }, { y: 100 }],[{ x: 0 }, { strokeColor: '#f00' }]]);
+</code>
+Or parallel series:</p>
+
+<p><code>javascript
+box.animate([[[{ x: 100 }, { y: 100 }],[{ strokeColor: '#f00'}, { y: 0 }]]]);
+</code>
+Or any combination thereof:
+<code>javascript
+box.animate([{ x: 100 }, { y: 100 }, [{ y: 0 }, { strokeColor: '#f00' }, [{ x: 0 }, { strokeColor: '#0f0' }]]]);
+</code>
+That's it! You can <a href="https://github.com/danielmendel/glitz.js">fork glitz.js</a> and try them out for yourself.</p>
+]]></content>
+  </entry>
+  
+</feed>
