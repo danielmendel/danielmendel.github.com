@@ -4,7 +4,7 @@
   <title><![CDATA[Useful Platitudes]]></title>
   <link href="http://danielmendel.github.com/atom.xml" rel="self"/>
   <link href="http://danielmendel.github.com/"/>
-  <updated>2013-02-25T18:33:44-05:00</updated>
+  <updated>2013-03-04T12:42:58-05:00</updated>
   <id>http://danielmendel.github.com/</id>
   <author>
     <name><![CDATA[Daniel Mendel]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Dumbwaiter v0.0.1]]></title>
+    <link href="http://danielmendel.github.com/blog/2013/03/04/dumbwaiter-v0-dot-0-1/"/>
+    <updated>2013-03-04T12:27:00-05:00</updated>
+    <id>http://danielmendel.github.com/blog/2013/03/04/dumbwaiter-v0-dot-0-1</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve recently found myself doing a lot of experiments in HTML that are only composed of client-side code.  The trick is that to properly test them, you have to serve the pages through a host of some kind &#8211; anything that you open directly using the <code>file:</code> protocol runs into security measures that prevent the page access to certain types of assets and requests.</p>
+
+<p>In the past I&#8217;ve either launched Chrome with <code>--allow-file-access-from-files</code> and used the <code>file:</code> protocol, or served the files through a local Apache or Nginx server.  Since I&#8217;m lazy, I decided these options were too much work and that instead I wanted a simple CLI to spin up small servers for any local directory.</p>
+
+<p>This morning I wrote <a href="https://github.com/danielmendel/dumbwaiter"><code>dumbwaiter</code></a>, a <em>tiny</em>, 11 line <code>npm</code> module for doing just that by using the <code>connect.static</code> middleware.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="err">#</span><span class="o">!</span><span class="err">/usr/bin/env node</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">connect</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;connect&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">path</span>    <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">dirPath</span>  <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">PORT</span>     <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">||</span> <span class="mi">3000</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">server</span>   <span class="o">=</span> <span class="nx">connect</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">server</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span> <span class="nx">connect</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span> <span class="nx">dirPath</span> <span class="p">)</span> <span class="p">)</span>
+</span><span class='line'><span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span> <span class="nx">PORT</span> <span class="p">)</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;serving &#39;</span> <span class="o">+</span> <span class="nx">dirPath</span> <span class="o">+</span> <span class="s1">&#39; on port &#39;</span> <span class="o">+</span> <span class="nx">PORT</span> <span class="o">+</span> <span class="s1">&#39; ...&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Install with <code>npm install -g dumbwaiter</code>, then run as <code>dumbwaiter [rootDir] [port]</code>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[New compound animations in glitz.js]]></title>

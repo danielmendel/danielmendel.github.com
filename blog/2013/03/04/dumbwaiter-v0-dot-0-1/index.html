@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Useful Platitudes</title>
+  <title>Dumbwaiter v0.0.1 - Useful Platitudes</title>
   <meta name="author" content="Daniel Mendel">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://danielmendel.github.com/">
+  <link rel="canonical" href="http://danielmendel.github.com/blog/2013/03/04/dumbwaiter-v0-dot-0-1/">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -74,15 +74,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/03/04/dumbwaiter-v0-dot-0-1/">Dumbwaiter v0.0.1</a></h1>
+      <h1 class="entry-title">Dumbwaiter v0.0.1</h1>
     
     
       <p class="meta">
@@ -105,7 +102,7 @@
   </header>
 
 
-  <div class="entry-content"><p>I&#8217;ve recently found myself doing a lot of experiments in HTML that are only composed of client-side code.  The trick is that to properly test them, you have to serve the pages through a host of some kind &#8211; anything that you open directly using the <code>file:</code> protocol runs into security measures that prevent the page access to certain types of assets and requests.</p>
+<div class="entry-content"><p>I&#8217;ve recently found myself doing a lot of experiments in HTML that are only composed of client-side code.  The trick is that to properly test them, you have to serve the pages through a host of some kind &#8211; anything that you open directly using the <code>file:</code> protocol runs into security measures that prevent the page access to certain types of assets and requests.</p>
 
 <p>In the past I&#8217;ve either launched Chrome with <code>--allow-file-access-from-files</code> and used the <code>file:</code> protocol, or served the files through a local Apache or Nginx server.  Since I&#8217;m lazy, I decided these options were too much work and that instead I wanted a simple CLI to spin up small servers for any local directory.</p>
 
@@ -138,63 +135,16 @@
 
 <p>Install with <code>npm install -g dumbwaiter</code>, then run as <code>dumbwaiter [rootDir] [port]</code>.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/25/new-compound-animations-in-glitz-dot-js/">New Compound Animations in glitz.js</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Daniel Mendel</span></span>
 
-<time datetime="2013-02-25T17:46:00-05:00" pubdate data-updated="true">Feb 25<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://github.com/danielmendel/glitz.js"><code>glitz.js</code></a> support for defining animations is pretty flexible, but it is designed for fairly simple interactive behaviors and has, until now, lacked a good method for building complex animations from component parts.  I&#8217;ve wanted to add a good API for to do this for a while and this week I finally got a chance to do so, while pairing with <a href="https://github.com/zachallaun">Zach Allaun</a> at <a href="http://www.hackerschool.com">Hacker School</a>.  I&#8217;m really excited about what we came up.  First, I&#8217;ll explain the state of affairs before our changes.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/02/25/new-compound-animations-in-glitz-dot-js/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/20/cool-stuff-i-learned-doing-code-review/">Cool Stuff I Learned Doing Code Review</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -206,86 +156,38 @@
   
 
 
-<time datetime="2013-02-20T16:27:00-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So a major staple of <a href="http://www.hackerschool.com">Hacker School</a> is doing ( and getting ) lots and lots of code reviews.  I think this is <em>awesome</em>, and I&#8217;ve been working on a lot of reviewing this week.  The most rewarding thing about reviewing a language you are comfortable in is that you learn all kinds of things you might never come across when left to your own ingrained design patterns.  This is a short round up of some neat things I learned about <code>javascript</code> this week.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/02/20/cool-stuff-i-learned-doing-code-review/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2013-03-04T12:27:00-05:00" pubdate data-updated="true">Mar 4<span>th</span>, 2013</time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/20/subclassing-javascript-arrays/">Subclassing Javascript Arrays</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/nodejs/'>nodejs</a>, <a class='category' href='/blog/categories/npm/'>npm</a>, <a class='category' href='/blog/categories/static-assets/'>static-assets</a>, <a class='category' href='/blog/categories/utilities/'>utilities</a>
+  
+</span>
 
 
-<time datetime="2013-02-20T03:44:00-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2013</time>
-        
-      </p>
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://danielmendel.github.com/blog/2013/03/04/dumbwaiter-v0-dot-0-1/" data-via="" data-counturl="http://danielmendel.github.com/blog/2013/03/04/dumbwaiter-v0-dot-0-1/" >Tweet</a>
+  
+  
+  
+</div>
 
-
-  <div class="entry-content"><p>When I started working on the animation framework <a href="https://github.com/danielmendel/glitz.js"><code>glitz.js</code></a>, I wanted an easy syntax for expressing and traversing a nested tree of <code>Renderable</code> objects.  I thought, &#8221;<em>Why not implement it as an array?</em>&#8221; Since the scene graph would need to be iterated over very quickly during the render loop, it would be great to just represent the whole thing as a multi-dimentional array &#8211; <strong>essentially a subclass of array</strong> that had some additional properties and methods like <code>render</code> and <code>animate</code>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">box1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Box</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">100</span> <span class="p">});</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">box2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Box</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">110</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">110</span> <span class="p">});</span>
-</span><span class='line'><span class="nx">box1</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span> <span class="nx">box2</span> <span class="p">);</span>
-</span><span class='line'><span class="nx">box1</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>       <span class="c1">// box2</span>
-</span><span class='line'><span class="nx">box1</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span> <span class="c1">// draws a box</span>
-</span></code></pre></td></tr></table></div></figure>
-
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/25/new-compound-animations-in-glitz-dot-js/" title="Previous Post: New compound animations in glitz.js">&laquo; New compound animations in glitz.js</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/02/20/subclassing-javascript-arrays/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -314,7 +216,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/danielmendel">@danielmendel</a> on GitHub
@@ -347,6 +249,7 @@
 
   
 </aside>
+
 
     </div>
   </div>

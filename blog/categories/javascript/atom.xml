@@ -4,7 +4,7 @@
   <title><![CDATA[Category: javascript | Useful Platitudes]]></title>
   <link href="http://danielmendel.github.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://danielmendel.github.com/"/>
-  <updated>2013-02-25T18:33:44-05:00</updated>
+  <updated>2013-03-04T12:42:58-05:00</updated>
   <id>http://danielmendel.github.com/</id>
   <author>
     <name><![CDATA[Daniel Mendel]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Dumbwaiter v0.0.1]]></title>
+    <link href="http://danielmendel.github.com/blog/2013/03/04/dumbwaiter-v0-dot-0-1/"/>
+    <updated>2013-03-04T12:27:00-05:00</updated>
+    <id>http://danielmendel.github.com/blog/2013/03/04/dumbwaiter-v0-dot-0-1</id>
+    <content type="html"><![CDATA[<p>I've recently found myself doing a lot of experiments in HTML that are only composed of client-side code.  The trick is that to properly test them, you have to serve the pages through a host of some kind -- anything that you open directly using the <code>file:</code> protocol runs into security measures that prevent the page access to certain types of assets and requests.</p>
+
+<p>In the past I've either launched Chrome with <code>--allow-file-access-from-files</code> and used the <code>file:</code> protocol, or served the files through a local Apache or Nginx server.  Since I'm lazy, I decided these options were too much work and that instead I wanted a simple CLI to spin up small servers for any local directory.</p>
+
+<p>This morning I wrote <a href="https://github.com/danielmendel/dumbwaiter"><code>dumbwaiter</code></a>, a <em>tiny</em>, 11 line <code>npm</code> module for doing just that by using the <code>connect.static</code> middleware.</p>
+
+<p>``` javascript</p>
+
+<h1>!/usr/bin/env node</h1>
+
+<p>var connect  = require('connect')
+  , path     = require('path')
+  , dirPath  = path.resolve( process.argv[2] )
+  , PORT     = process.argv[3] || 3000
+  , server   = connect()</p>
+
+<p>server.use( connect.static( dirPath ) )
+server.listen( PORT )
+console.log('serving ' + dirPath + ' on port ' + PORT + ' ...')
+```</p>
+
+<p>Install with <code>npm install -g dumbwaiter</code>, then run as <code>dumbwaiter [rootDir] [port]</code>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[New compound animations in glitz.js]]></title>
