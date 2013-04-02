@@ -4,7 +4,7 @@
   <title><![CDATA[Useful Platitudes]]></title>
   <link href="http://danielmendel.github.com/atom.xml" rel="self"/>
   <link href="http://danielmendel.github.com/"/>
-  <updated>2013-04-02T17:43:20-04:00</updated>
+  <updated>2013-04-02T17:43:59-04:00</updated>
   <id>http://danielmendel.github.com/</id>
   <author>
     <name><![CDATA[Daniel Mendel]]></name>
@@ -18,7 +18,7 @@
     <link href="http://danielmendel.github.com/blog/2013/04/02/all-of-the-markups/"/>
     <updated>2013-04-02T16:59:00-04:00</updated>
     <id>http://danielmendel.github.com/blog/2013/04/02/all-of-the-markups</id>
-    <content type="html"><![CDATA[<p>I recently started taking steps to revive <a href="https://github.com/danielmendel/enml.js">ENML.js</a>, a library I wrote a few years ago for defining and parsing <strong>Domain Specfic Markup Languages</strong>.  Since I wrote the first version of <strong>ENML</strong> in Ruby several years ago, some significant other <strong>ENML</strong> &#8216;s have popped up – most notably the <a href="http://dev.evernote.com/start/core/enml.php">Evernote Markup Language</a>.  Obviously, I need to find a new name for the project.  After some cursory googling for other possible <code>__ML</code> names I came to the realization that * there are a buttload of Markup Languages in the world* .</p>
+    <content type="html"><![CDATA[<p>I recently started taking steps to revive <a href="https://github.com/danielmendel/enml.js">ENML.js</a>, a library I wrote a few years ago for defining and parsing <strong>Domain Specfic Markup Languages</strong>.  Since I wrote the first version of <strong>ENML</strong> in Ruby several years ago, some significant other <strong>ENML</strong> &#8216;s have popped up – most notably the <a href="http://dev.evernote.com/start/core/enml.php">Evernote Markup Language</a>.  Obviously, I need to find a new name for the project.  After some cursory googling for other possible <code>__ML</code> names I came to the realization that <strong>there are a buttload of Markup Languages in the world</strong>.</p>
 
 <p>I decided – as any sane programmer in my position would – to spend the next several hours writing a scraper to compile a list of them all.  I sat down with <a href="https://github.com/thomasballinger">Thomas Ballinger</a> and did just that. Without futher ado, I am proud to present our findings:</p>
 
