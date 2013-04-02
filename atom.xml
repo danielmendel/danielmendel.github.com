@@ -4,7 +4,7 @@
   <title><![CDATA[Useful Platitudes]]></title>
   <link href="http://danielmendel.github.com/atom.xml" rel="self"/>
   <link href="http://danielmendel.github.com/"/>
-  <updated>2013-03-04T12:42:58-05:00</updated>
+  <updated>2013-04-02T17:43:20-04:00</updated>
   <id>http://danielmendel.github.com/</id>
   <author>
     <name><![CDATA[Daniel Mendel]]></name>
@@ -12,6 +12,2608 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[All of the Markups]]></title>
+    <link href="http://danielmendel.github.com/blog/2013/04/02/all-of-the-markups/"/>
+    <updated>2013-04-02T16:59:00-04:00</updated>
+    <id>http://danielmendel.github.com/blog/2013/04/02/all-of-the-markups</id>
+    <content type="html"><![CDATA[<p>I recently started taking steps to revive <a href="https://github.com/danielmendel/enml.js">ENML.js</a>, a library I wrote a few years ago for defining and parsing <strong>Domain Specfic Markup Languages</strong>.  Since I wrote the first version of <strong>ENML</strong> in Ruby several years ago, some significant other <strong>ENML</strong> &#8216;s have popped up – most notably the <a href="http://dev.evernote.com/start/core/enml.php">Evernote Markup Language</a>.  Obviously, I need to find a new name for the project.  After some cursory googling for other possible <code>__ML</code> names I came to the realization that * there are a buttload of Markup Languages in the world* .</p>
+
+<p>I decided – as any sane programmer in my position would – to spend the next several hours writing a scraper to compile a list of them all.  I sat down with <a href="https://github.com/thomasballinger">Thomas Ballinger</a> and did just that. Without futher ado, I am proud to present our findings:</p>
+
+<!-- more -->
+
+
+<h2>The list</h2>
+
+<p><span style="font-size:0.8em">Entries marked with <code>*</code> appear to be widely used (we found a lot of references to them).<br />Scroll down to find the <code>__ML</code> names that are still available.<br />This list clearly has some false positives, feel free to <a href="https://github.com/danielmendel/danielmendel.github.com">make a pull request</a> if you want to clean them up :)</span></p>
+
+<pre><code>AAML
+===============
+Attendant Markup Language
+Another Android Markup Language
+Automated Avatar Markup Language
+Affective Animation Markup Language
+Avatar Annotation Markup Language
+Active Audio Markup Language
+Advanced Audio Markup Language
+
+
+ABML
+===============
+* Address Book Markup Language
+
+ACML
+===============
+Ansi C Markup Language
+Agent Communication Markup Language
+Athematical Markup Language
+Application Configuration Markup Language
+
+ADML
+===============
+* Architecture Description Markup Language
+Application Description Markup Language
+
+AEML
+===============
+Astronomical Event Markup Language
+Action Engine Markup Language
+Assertion Markup Language
+
+AFML
+===============
+Architectural Floorplan Markup Language
+* Avatar Face Markup Language
+
+AGML
+===============
+* Annotated Gel Markup Language
+
+AHML
+===============
+Angband Help Markup Language
+
+AIML
+===============
+* Artificial Intelligence Markup Language
+Ai Markup Language
+
+AKML
+===============
+Audiomath Knowledge Markup Language
+
+ALML
+===============
+Another Lightweight Markup Language
+Abstract Layout Markup Language
+Application Logic Markup Language
+Al Markup Language
+
+AMML
+===============
+Aml Markup Language
+Attention Measurement Markup Language
+Adaptive Multimedia Markup Language
+
+ANML
+===============
+* And Notification Markup Language
+Annotated Markup Language
+Anotated Markup Language
+Arning Markup Language
+Another Markup Language
+
+AOML
+===============
+* Astronomical Observation Markup Language
+Anarchy Online Markup Language
+Astronomical Object Markup Language
+
+APML
+===============
+Attention Profiling Markup Language
+Attention Profile Markup Language
+
+ARML
+===============
+* Augmented Reality Markup Language
+Atform Markup Language
+
+ASML
+===============
+* Automatic Site Markup Language
+Astronomical Markup Language
+Alternate Scripting Markup Language
+
+ATML
+===============
+* Automatic Test Markup Language
+
+AVML
+===============
+* Antivirus Markup Language
+Active Video Markup Language
+
+AZML
+===============
+Az Markup Language
+
+BAML
+===============
+* Binary Application Markup Language
+Ble Application Markup Language
+
+BBML
+===============
+* Bulletin Board Markup Language
+
+BCML
+===============
+* Biological Connection Markup Language
+Batch Control Markup Language
+Biological Collection Markup Language
+Bored Child Markup Language
+
+BDML
+===============
+* Biophysical Description Markup Language
+Business Decision Markup Language
+Bank Definition Markup Language
+Based Markup Language
+Beam Data Markup Language
+
+BEML
+===============
+* Brightcove Experience Markup Language
+Brightcove Markup Language
+Beml Markup Language
+
+BGML
+===============
+* Board Game Markup Language
+Basisplus Generalised Markup Language
+Basis Generalized Markup Language
+
+BHML
+===============
+Bml Html Markup Language
+
+BIML
+===============
+* Business Intelligence Markup Language
+
+BKML
+===============
+* Burger King Markup Language
+
+BLML
+===============
+* Business Letter Markup Language
+Blinkenlights Markup Language
+* Blinkenlightsmarkuplanguage
+Bruce Lee Markup Language
+
+BMML
+===============
+* Braille Music Markup Language
+Balsamiq Mockups Markup Language
+
+BNML
+===============
+* Business Narrative Markup Language
+Bpmn Markup Language
+
+BPML
+===============
+Business Process Markup Language
+
+BRML
+===============
+* Business Rules Markup Language
+
+BSML
+===============
+* Bioinformatic Sequence Markup Language
+Bioinformatics Sequence Markup Language
+Binding Schema Markup Language
+Bullshit Markup Language
+
+BUML
+===============
+* Buml Markup Language
+* Basic Units Markup Language
+
+BVML
+===============
+* Biological Variation Markup Language
+
+BWML
+===============
+Bridgeworks Markup Language
+
+CAML
+===============
+* Collaborative Application Markup Language
+Camera Markup Language
+Collaborativeapplicationmarkuplanguage
+
+CBML
+===============
+* Case Based Markup Language
+* Comic Book Markup Language
+
+CDML
+===============
+* Claris Dynamic Markup Language
+Climate Data Markup Language
+
+CEML
+===============
+Computational Electromagnetic Markup Language
+Coordinated Event Markup Language
+Cated Markup Language
+Control Elements Markup Language
+
+CFML
+===============
+* Coldfusion Markup Language
+
+CGML
+===============
+Common Ground Markup Language
+Code Generation Markup Language
+* Compact Geographic Markup Language
+
+CHML
+===============
+Cultural Heritage Markup Language
+
+CIML
+===============
+* Customer Identity Markup Language
+* Computer Investigation Markup Language
+
+CLML
+===============
+Crown Legilsation Markup Language
+* Crown Legislation Markup Language
+Common Logic Markup Language
+
+CMML
+===============
+* Continuous Media Markup Language
+
+CNML
+===============
+* Community Network Markup Language
+Chinese News Markup Language
+* Community Networking Markup Language
+Community Networks Markup Language
+
+COML
+===============
+Component Markup Language
+* Canopen Markup Language
+Coffescript Markup Language
+
+CPML
+===============
+* Call Policy Markup Language
+Call Processing Markup Language
+Command Procedure Markup Language
+
+CQML
+===============
+Common Query Markup Language
+Chical Qos Markup Language
+
+CRML
+===============
+* Content Request Markup Language
+Conflict Resolution Markup Language
+
+CSML
+===============
+* Cell System Markup Language
+* Conceptual Space Markup Language
+Cave Survey Markup Language
+
+CTML
+===============
+Current Markup Language
+
+CVML
+===============
+* Computer Vision Markup Language
+Caviar Video Markup Language
+Common Vulnerability Markup Language
+
+CWML
+===============
+* Cyclone Warning Markup Language
+* Compact Wireless Markup Language
+
+CXML
+===============
+Cumentation Xml Markup Language
+
+DAML
+===============
+* Darpa Agent Markup Language
+
+DBML
+===============
+* Database Markup Language
+
+DCML
+===============
+* Data Center Markup Language
+
+DDML
+===============
+* Document Definition Markup Language
+Data Display Markup Language
+
+DEML
+===============
+* Digital Evidence Markup Language
+Demographic Markup Language
+Device Markup Language
+
+DFML
+===============
+Dwarf Fortress Markup Language
+* Dynamic File Markup Language
+
+DGML
+===============
+* Directed Graph Markup Language
+
+DHML
+===============
+Dhml Markup Language
+
+DIML
+===============
+* Data Injection Markup Language
+* Dissertation Markup Language
+
+DJML
+===============
+* Dow Jones Markup Language
+
+DKML
+===============
+* Device Kit Markup Language
+Devicekit Markup Language
+
+DLML
+===============
+* Description Logics Markup Language
+* Description Logic Markup Language
+Dynamic Layout Markup Language
+
+DMML
+===============
+* Dialogue Moves Markup Language
+Data Matching Markup Language
+Dialog Moves Markup Language
+
+DNML
+===============
+* Digital Novel Markup Language
+
+DOML
+===============
+D Other Markup Language
+
+DPML
+===============
+* Digital Photogrammetry Markup Language
+* Declarative Process Markup Language
+Declarative Processing Markup Language
+
+DQML
+===============
+D Query Markup Language
+
+DRML
+===============
+D Report Markup Language
+* Design Rule Markup Language
+Dramatic Markup Language
+D Reporting Markup Language
+
+DSML
+===============
+* Directory Services Markup Language
+Directory Service Markup Language
+
+DTML
+===============
+* Document Template Markup Language
+
+DUML
+===============
+* Document Update Markup Language
+
+DVML
+===============
+* Distributed Voice Markup Language
+Datum Validation Markup Language
+
+DWML
+===============
+* Digital Weather Markup Language
+Dynamic Web Markup Language
+
+DXML
+===============
+Documentation Xml Markup Language
+
+DZML
+===============
+Datazoomer Markup Language
+
+EAML
+===============
+Email Markup Language
+Eneralized Markup Language
+
+EBML
+===============
+* Extensible Binary Markup Language
+Extensible Markup Language
+Extended Binary Markup Language
+
+ECML
+===============
+Electronic Commerce Markup Language
+Elgg Customizable Markup Language
+Epicollect Markup Language
+Embedded Component Markup Language
+
+EDML
+===============
+Entity Definition Markup Language
+* Electronic Data Markup Language
+Extended Datamanagement Markup Language
+Event Definition Markup Language
+Extension Data Markup Language
+Energy Distribution Markup Language
+Elastic Deployment Markup Language
+
+EEML
+===============
+* Extended Environments Markup Language
+Escalator Elevator Markup Language
+
+EFML
+===============
+* Eventfinder Markup Language
+
+EGML
+===============
+* Evolving Graph Markup Language
+
+EHML
+===============
+Extensible Hypertext Markup Language
+
+EIML
+===============
+* Education Information Markup Language
+Erial Markup Language
+Extensible Markup Language
+
+EJML
+===============
+Electronic Journal Markup Language
+
+EKML
+===============
+* Ektron Markup Language
+
+ELML
+===============
+* Elesson Markup Language
+
+EMML
+===============
+* Enterprise Mashup Markup Language
+
+ENML
+===============
+* Enotarization Markup Language
+* Evernote Markup Language
+
+EOML
+===============
+Extensible Object Markup Language
+Engineering Ontology Markup Language
+
+EPML
+===============
+* Epc Markup Language
+
+EQML
+===============
+* Electronic Questionnaire Markup Language
+
+ERML
+===============
+* Erlang Markup Language
+Earth Resource Markup Language
+Executable Rule Markup Language
+* Extensible Rights Markup Language
+
+ESML
+===============
+* Earth Science Markup Language
+Earth Sciences Markup Language
+
+ETML
+===============
+Er Text Markup Language
+E Term Markup Language
+Erent Markup Language
+* Ertext Markup Language
+Ent Markup Language
+
+EVML
+===============
+* E Vector Markup Language
+El Vector Markup Language
+
+EWML
+===============
+Easyweb Markup Language
+Easy Web Markup Language
+
+EXML
+===============
+* Extensible Markup Language
+Entation Xml Markup Language
+
+FAML
+===============
+Family Markup Language
+
+FBML
+===============
+* Facebook Markup Language
+
+FCML
+===============
+* Facility Control Markup Language
+Fantastic Contraption Markup Language
+Flow Cytometry Markup Language
+
+FDML
+===============
+Flow Description Markup Language
+Field Data Markup Language
+Filemaker Dynamic Markup Language
+Farleden Dynamic Markup Language
+* Flow Definition Markup Language
+Forms Definition Markup Language
+
+FEML
+===============
+* Facial Expression Markup Language
+Flexible Markup Language
+
+FFML
+===============
+* Force Field Markup Language
+Forcefield Markup Language
+French Fry Markup Language
+
+FGML
+===============
+* Fenggui Markup Language
+
+FHML
+===============
+For Hypertext Markup Language
+
+FLML
+===============
+* Film Markup Language
+Fluidity Markup Language
+
+FMML
+===============
+Fbml Markup Language
+
+FOML
+===============
+Format Objects Markup Language
+Formatting Objects Markup Language
+Flight Operations Markup Language
+Formula Markup Language
+
+FPML
+===============
+* Financial Products Markup Language
+
+FQML
+===============
+Freetest Question Markup Language
+
+FRML
+===============
+First Retail Markup Language
+File Replication Markup Language
+Financial Reporting Markup Language
+
+FSML
+===============
+* Financial Services Markup Language
+* Fusion Simulation Markup Language
+* File Structure Markup Language
+
+FTML
+===============
+Fferent Markup Language
+
+FXML
+===============
+F Xml Markup Language
+
+GAML
+===============
+* Game Markup Language
+* Generalized Analytical Markup Language
+General Analytical Markup Language
+
+GCML
+===============
+General Caption Markup Language
+Geographical Content Markup Language
+Genetic Code Markup Language
+Geometric Constraints Markup Language
+Geometry Construction Markup Language
+General Configuration Markup Language
+Geographic Content Markup Language
+
+GDML
+===============
+* Geometry Description Markup Language
+Geometry Descripton Markup Language
+
+GEML
+===============
+* Gene Expression Markup Language
+
+GFML
+===============
+* Gene Fusion Markup Language
+* Genetic Fuzzy Markup Language
+
+GGML
+===============
+Guide Grinder Markup Language
+
+GHML
+===============
+* Gas Hydrate Markup Language
+Gas Hydrates Markup Language
+
+GIML
+===============
+* Gastro Intestinal Markup Language
+Guided Instruction Markup Language
+Game Interface Markup Language
+Generalized Interface Markup Language
+
+GLML
+===============
+* Generative Lexicon Markup Language
+Grid Logging Markup Language
+
+GMML
+===============
+* Google Maps Markup Language
+Genetic Mapdata Markup Language
+Geographical Mobile Markup Language
+General Mosaic Markup Language
+
+GNML
+===============
+* Generic Neural Markup Language
+Goal Net Markup Language
+
+GOML
+===============
+* General Ontological Markup Language
+
+GPML
+===============
+* Genmapp Pathway Markup Language
+* Gplates Markup Language
+
+GQML
+===============
+Generalized Questionnaire Markup Language
+* General Questionnaire Markup Language
+
+GRML
+===============
+* General Reuse Markup Language
+Gordonrhodes Markup Language
+Grml Markup Language
+
+GSML
+===============
+* Ground Station Markup Language
+Gigya Socialize Markup Language
+* Grid Service Markup Language
+Geological Science Markup Language
+Geology Science Markup Language
+Geca Scenario Markup Language
+
+GUML
+===============
+Gc Uncertainty Markup Language
+
+GVML
+===============
+Global Vulnerability Markup Language
+
+GWML
+===============
+Ground Water Markup Language
+* Groundwater Markup Language
+
+GYML
+===============
+Geography Markup Language
+
+HAML
+===============
+* Html Abstraction Markup Language
+Haml Markup Language
+
+HEML
+===============
+He Markup Language
+* Hypertext Markup Language
+
+HHML
+===============
+Html Hypertext Markup Language
+He Hypertext Markup Language
+
+HIML
+===============
+Hat Is Markup Language
+
+HKML
+===============
+Hot Keys Markup Language
+
+HLML
+===============
+Html Markup Language
+
+HMML
+===============
+Html Markup Language
+
+HPML
+===============
+* Hypertext Markup Language
+
+HQML
+===============
+* Hierarchical Qos Markup Language
+
+HRML
+===============
+* Hypertext Markup Language
+
+HSML
+===============
+Hubspot Markup Language
+Hot Spot Markup Language
+Hsml Markup Language
+Healthspace Markup Language
+
+HTML
+===============
+Hyper Text Markup Language
+He Term Markup Language
+* Hypertext Markup Language
+
+HUML
+===============
+Human Markup Language
+Huml Markup Language
+
+HWML
+===============
+Hand Written Markup Language
+
+HXML
+===============
+* Hypertext Markup Language
+Hxml Markup Language
+
+HYML
+===============
+* Hypertext Markup Language
+
+IAML
+===============
+* Interpreted Application Markup Language
+Information Assurance Markup Language
+Information Architecture Markup Language
+
+IBML
+===============
+Ible Markup Language
+Ibm Markup Language
+
+ICML
+===============
+* Instrument Control Markup Language
+Incopy Markup Language
+Ialized Content Markup Language
+Ic Markup Language
+* Intelligence Community Markup Language
+
+IDML
+===============
+* International Development Markup Language
+* Indesign Markup Language
+Identity Markup Language
+Identification Markup Language
+
+IEML
+===============
+Internet Explorer Markup Language
+
+IFML
+===============
+* Interactive Fiction Markup Language
+
+IGML
+===============
+* Implementation Guideline Markup Language
+
+IHML
+===============
+Interconnected Hyperlink Markup Language
+
+IIML
+===============
+* Interactive Image Markup Language
+
+IKML
+===============
+Iknowledge Markup Language
+
+ILML
+===============
+Ible Markup Language
+
+IMML
+===============
+* Immersive Media Markup Language
+Intermapper Markup Language
+Instant Messaging Markup Language
+
+INML
+===============
+Intuitive Markup Language
+Inml Markup Language
+Inline Markup Language
+
+IOML
+===============
+* Interactive Outline Markup Language
+Interactive Outlining Markup Language
+
+IPML
+===============
+Input Markup Language
+Input Processing Markup Language
+Interactive Play Markup Language
+
+IQML
+===============
+* Intelligent Questionnaire Markup Language
+
+IRML
+===============
+Intermediary Rule Markup Language
+* Investment Research Markup Language
+Inventory Record Markup Language
+
+ISML
+===============
+* Intershop Markup Language
+Incredibily Strange Markup Language
+Intactive Systems Markup Language
+Internet Survey Markup Language
+
+ITML
+===============
+Ifferent Markup Language
+
+IUML
+===============
+Integrated Unified Markup Language
+Iuml Markup Language
+Intermediate Unified Markup Language
+
+IVML
+===============
+* Intuvision Markup Language
+Ivend Markup Language
+
+IWML
+===============
+Interwiki Markup Language
+* Inter Wiki Markup Language
+Interworking Markup Language
+
+IXML
+===============
+Ion Xml Markup Language
+
+JAML
+===============
+* Java Application Markup Language
+* Java Aspect Markup Language
+Just Another Markup Language
+
+JBML
+===============
+Jackbe Markup Language
+Jbml Markup Language
+James Bond Markup Language
+Jeff Blums Markup Language
+
+JCML
+===============
+Java Code Markup Language
+* Job Control Markup Language
+
+JDML
+===============
+* Job Description Markup Language
+
+JEML
+===============
+Java Enhanced Markup Language
+Java Easy Markup Language
+
+JGML
+===============
+Java Graphics Markup Language
+* Jinigrid Markup Language
+
+JHML
+===============
+Java Hypertext Markup Language
+
+JMML
+===============
+Jackbe Mashup Markup Language
+
+JPML
+===============
+* Java Programming Markup Language
+
+JQML
+===============
+Jquery Markup Language
+
+JSML
+===============
+* Java Speech Markup Language
+* Jspeech Markup Language
+Javatm Speech Markup Language
+
+JUML
+===============
+Jump Markup Language
+
+JWML
+===============
+Java Widget Markup Language
+
+JZML
+===============
+Jazzmutant Markup Language
+
+KBML
+===============
+* Koala Bean Markup Language
+Knowledge Base Markup Language
+
+KDML
+===============
+* Kinetic Data Markup Language
+Knowledge Database Markup Language
+
+KFML
+===============
+Karst Features Markup Language
+Kung Fooey Markup Language
+
+KGML
+===============
+* Kegg Markup Language
+
+KHML
+===============
+Keyhole Markup Language
+
+KLML
+===============
+* Keyhole Markup Language
+Knowledge Markup Language
+
+KMML
+===============
+Kana Message Markup Language
+Knowledge Management Markup Language
+Knowledge Modeling Markup Language
+
+KOML
+===============
+Komal Markup Language
+
+KPML
+===============
+* Keypad Markup Language
+Key Press Markup Language
+
+KQML
+===============
+Knowledge Query Markup Language
+
+KRML
+===============
+* Knowledge Representation Markup Language
+
+KSML
+===============
+Keystone Markup Language
+
+KWML
+===============
+Knowledge Web Markup Language
+
+LAML
+===============
+Lication Markup Language
+* Lisp Abstracted Markup Language
+
+LBML
+===============
+Learner Behavior Markup Language
+
+LCML
+===============
+* Legacy Computing Markup Language
+* Library Catalog Markup Language
+
+LDML
+===============
+* Locale Data Markup Language
+
+LEML
+===============
+* Le Markup Language
+
+LGML
+===============
+* Linguistics Markup Language
+
+LIML
+===============
+Library Interface Markup Language
+Limited Markup Language
+Library Interaction Markup Language
+Lized Markup Language
+
+LJML
+===============
+Livejournal Markup Language
+
+LKML
+===============
+* Lexical Knowledge Markup Language
+
+LMML
+===============
+* Learning Material Markup Language
+
+LNML
+===============
+Lon Markup Language
+* Liner Notes Markup Language
+
+LOML
+===============
+* Learning Object Markup Language
+
+LPML
+===============
+Literate Programming Markup Language
+* Linux Packaging Markup Language
+Logical Partition Markup Language
+
+LRML
+===============
+* Lire Report Markup Language
+Le Rule Markup Language
+
+LSML
+===============
+* Lightswitch Markup Language
+Liveserver Markup Language
+Levelseas Markup Language
+
+LVML
+===============
+* Legislative Voting Markup Language
+Layered Video Markup Language
+Less Verbose Markup Language
+
+LWML
+===============
+* Lightweight Markup Language
+Light Weight Markup Language
+
+LYML
+===============
+Lity Markup Language
+
+MAML
+===============
+* Microsoft Assistance Markup Language
+* Microarray Markup Language
+
+MBML
+===============
+Matlab Markup Language
+Map Builder Markup Language
+Metabasic Markup Language
+
+MCML
+===============
+* Media Center Markup Language
+Mediacentermarkuplanguage
+Mediacenter Markup Language
+
+MDML
+===============
+* Market Data Markup Language
+Markdown Markup Language
+Model Document Markup Language
+
+MEML
+===============
+* Mathematics Education Markup Language
+
+MFML
+===============
+Microformats Markup Language
+Moo Formatting Markup Language
+Microformat Markup Language
+Macromedia Flash Markup Language
+Marketfeed Markup Language
+Macromedia Flex Markup Language
+
+MGML
+===============
+* Minimal Generalized Markup Language
+
+MHML
+===============
+* Messaging Hypertext Markup Language
+Modular Hypertext Markup Language
+Modern House Markup Language
+
+MIML
+===============
+* Maritime Information Markup Language
+Manuscript Images Markup Language
+Mation Markup Language
+Multimodal Interaction Markup Language
+
+MKML
+===============
+Merly Keyhole Markup Language
+
+MLML
+===============
+* Meta Language Markup Language
+Machine Learning Markup Language
+Markup Language Markup Language
+
+MNML
+===============
+* Musical Notation Markup Language
+Music Notation Markup Language
+Mathnews Markup Language
+
+MOML
+===============
+Media Objects Markup Language
+* Modeling Markup Language
+* Media Object Markup Language
+
+MPML
+===============
+* Multimodal Presentation Markup Language
+Modal Presentation Markup Language
+
+MQML
+===============
+* Message Queuing Markup Language
+
+MRML
+===============
+* Mind Reading Markup Language
+Multimedia Retrieval Markup Language
+Minecraft Redstone Markup Language
+
+MSML
+===============
+* Media Server Markup Language
+Maritime Safety Markup Language
+
+MVML
+===============
+* Media Vocabulary Markup Language
+Math Viewer Markup Language
+Multimedia Vocabulary Markup Language
+Multivox Markup Language
+
+MWML
+===============
+Moinmoin Wiki Markup Language
+Motivewave Markup Language
+* Mitsweb Markup Language
+Mobile Web Markup Language
+
+MZML
+===============
+Mz Markup Language
+
+NAML
+===============
+* Nabble Application Markup Language
+Naml Markup Language
+* Nd Address Markup Language
+
+NBML
+===============
+Netbricks Markup Language
+Not Bunk Markup Language
+Notebook Markup Language
+Nsible Markup Language
+
+NCML
+===============
+* Netcdf Markup Language
+
+NDML
+===============
+* Network Design Markup Language
+* Numerical Data Markup Language
+
+NEML
+===============
+Near Eastern Markup Language
+Near East Markup Language
+Novah Export Markup Language
+Neredbojias Emotion Markup Language
+Nemui Extensible Markup Language
+
+NHML
+===============
+Neuromorphic Hardware Markup Language
+Network Hint Markup Language
+
+NIML
+===============
+Nalytical Information Markup Language
+Neuroimaging Markup Language
+Nimal Markup Language
+
+NKML
+===============
+Nursing Knowledge Markup Language
+
+NLML
+===============
+* Natural Language Markup Language
+Nlml Markup Language
+
+NMML
+===============
+Network Management Markup Language
+Neuromorphic Markup Language
+Network Modeling Markup Language
+
+NNML
+===============
+* Neural Network Markup Language
+Neural Net Markup Language
+
+NOML
+===============
+Ngo Markup Language
+Normal Markup Language
+
+NPML
+===============
+* Netpriva Markup Language
+
+NQML
+===============
+* Natural Query Markup Language
+
+NRML
+===============
+Natural Resources Markup Language
+Nursery Rhyme Markup Language
+
+NSML
+===============
+* News Story Markup Language
+* News Markup Language
+
+NTML
+===============
+Nt Markup Language
+
+NUML
+===============
+* Numerical Markup Language
+
+NVML
+===============
+* Navigation Markup Language
+
+NWML
+===============
+News Markup Language
+
+NXML
+===============
+Ntation Xml Markup Language
+N Xml Markup Language
+
+OAML
+===============
+Openavatar Markup Language
+Orenge Analysis Markup Language
+Ographic Markup Language
+
+OBML
+===============
+* Opera Binary Markup Language
+
+OCML
+===============
+Ocumentation Markup Language
+
+ODML
+===============
+Odml Markup Language
+
+OEML
+===============
+* Open Events Markup Language
+Ostores Markup Language
+
+OFML
+===============
+* Open Forms Markup Language
+Open Form Markup Language
+
+OGML
+===============
+* Open Graph Markup Language
+Ography Markup Language
+
+OHML
+===============
+Obfuscated Hypertext Markup Language
+
+OIML
+===============
+Open Invoice Markup Language
+
+OLML
+===============
+Open Lexicon Markup Language
+Ole Markup Language
+Observation Log Markup Language
+
+OMML
+===============
+* Office Math Markup Language
+
+ONML
+===============
+* Online Markup Language
+
+OOML
+===============
+* Object Oriented Markup Language
+Orenge Object Markup Language
+Open Office Markup Language
+
+OPML
+===============
+* Outline Processor Markup Language
+
+OQML
+===============
+Oracle Question Markup Language
+
+ORML
+===============
+* Optimization Reporting Markup Language
+Operations Research Markup Language
+
+OSML
+===============
+* Opensocial Markup Language
+* Open Simple Markup Language
+Omic Space Markup Language
+Optical Spectroscopy Markup Language
+
+OTML
+===============
+* Offline Tagging Markup Language
+
+OVML
+===============
+* Ovidentia Markup Language
+* Open Video Markup Language
+
+OWML
+===============
+Own Markup Language
+Openwack Markup Language
+
+OXML
+===============
+Of Xml Markup Language
+Ocumentation Xml Markup Language
+O Xml Markup Language
+
+PAML
+===============
+* Palm Markup Language
+Proprietary Markup Language
+
+PBML
+===============
+Purebasic Markup Language
+Plasma Book Markup Language
+
+PCML
+===============
+* Program Call Markup Language
+Programme Call Markup Language
+
+PDML
+===============
+* Packet Details Markup Language
+Portable Document Markup Language
+* Product Data Markup Language
+* Panel Definition Markup Language
+
+PEML
+===============
+* Prompt Engine Markup Language
+* Php Extensible Markup Language
+
+PFML
+===============
+Property Feed Markup Language
+* Priority Fidelity Markup Language
+Paid For Markup Language
+
+PGML
+===============
+* Precision Graphics Markup Language
+
+PHML
+===============
+Physiological Hierarchy Markup Language
+Php Haml Markup Language
+Philosophy Markup Language
+
+PIML
+===============
+* Pathogen Information Markup Language
+
+PKML
+===============
+* Peachy Keen Markup Language
+Product Knowledge Markup Language
+
+PLML
+===============
+* Pattern Language Markup Language
+
+PMML
+===============
+* Predictive Model Markup Language
+Predictive Modelling Markup Language
+
+PNML
+===============
+* Petri Net Markup Language
+
+POML
+===============
+Proprietary Markup Language
+
+PPML
+===============
+* Personalized Print Markup Language
+Personalized Page Markup Language
+
+PQML
+===============
+Pretend Quiz Markup Language
+Process Quality Markup Language
+
+PRML
+===============
+* Proofreading Markup Language
+Proofreadingmarkuplanguage
+* Privacy Rights Markup Language
+
+PSML
+===============
+* Portal Structure Markup Language
+Pmsl Markup Language
+
+PTML
+===============
+Per Text Markup Language
+* Pertext Markup Language
+
+PVML
+===============
+Photovoltaic Markup Language
+Precision Vector Markup Language
+Personajes Virtuales Markup Language
+
+PWML
+===============
+* Print Wizard Markup Language
+Printwizard Markup Language
+
+PYML
+===============
+* Python Markup Language
+
+QCML
+===============
+Quality Control Markup Language
+Qualitative Coding Markup Language
+
+QDML
+===============
+* Quick Data Markup Language
+Quick Document Markup Language
+Qualitative Data Markup Language
+
+QFML
+===============
+Qfml Markup Language
+
+QJML
+===============
+* Quick Java Markup Language
+Qjml Markup Language
+
+QKML
+===============
+Question Knowledge Markup Language
+
+QMML
+===============
+* Question Mark Markup Language
+
+QPML
+===============
+Quick Prototyping Markup Language
+Quick Prototype Markup Language
+
+QRML
+===============
+* Query Response Markup Language
+
+QXML
+===============
+* Quarkxpress Markup Language
+Quark Xpress Markup Language
+
+RAML
+===============
+Relational Algebra Markup Language
+* Reader Application Markup Language
+
+RBML
+===============
+* Ruby Markup Language
+Rule Base Markup Language
+Rule Based Markup Language
+
+RCML
+===============
+* Rich Client Markup Language
+Revision Controller Markup Language
+Rcml Markup Language
+Rulecore Markup Language
+
+RDML
+===============
+* R Data Markup Language
+* Reusable Data Markup Language
+* Route Data Markup Language
+
+REML
+===============
+* Recipe Exchange Markup Language
+Recipe Markup Language
+Rock Engineering Markup Language
+
+RFML
+===============
+* Record Format Markup Language
+
+RGML
+===============
+* Requirements Generation Markup Language
+
+RIML
+===============
+Rendering Independent Markup Language
+* Rule Identification Markup Language
+Reduced Instruction Markup Language
+Renderer Independent Markup Language
+
+RKML
+===============
+Rmerly Keyhole Markup Language
+
+RLML
+===============
+Roguelike Markup Language
+* Real Life Markup Language
+
+RMML
+===============
+* Reusable Macro Markup Language
+Rich Multimedia Markup Language
+
+RNML
+===============
+Rent Markup Language
+
+ROML
+===============
+Reference Object Markup Language
+Roblox Markup Language
+
+RPML
+===============
+* Resource Profiles Markup Language
+Resource Physical Markup Language
+Route Planning Markup Language
+Route Plan Markup Language
+
+RQML
+===============
+* Requirements Markup Language
+
+RRML
+===============
+Restaurant Review Markup Language
+Riented Rule Markup Language
+
+RSML
+===============
+* Rule Structure Markup Language
+Reference Semantic Markup Language
+
+RTML
+===============
+* Remote Telescope Markup Language
+Robot Transaction Markup Language
+
+RVML
+===============
+* Rich Vector Markup Language
+Richard Vogtmann Markup Language
+
+RWML
+===============
+* Road Web Markup Language
+Real World Markup Language
+
+SAML
+===============
+* Security Assertion Markup Language
+
+SBML
+===============
+* Systems Biology Markup Language
+
+SCML
+===============
+Source Code Markup Language
+Scribe Markup Language
+Scenario Markup Language
+* Service Creation Markup Language
+Shopping Cart Markup Language
+Shortcode Markup Language
+Supply Chain Markup Language
+
+SDML
+===============
+* Signed Document Markup Language
+* Simplified Data Markup Language
+
+SEML
+===============
+* Sible Markup Language
+Scientific Experiment Markup Language
+Structured Export Markup Language
+
+SFML
+===============
+* Screening Form Markup Language
+* Simple Form Markup Language
+Starfleet Markup Language
+
+SGML
+===============
+* Standard Generalized Markup Language
+Standardized Generalized Markup Language
+Sgml Markup Language
+
+SHML
+===============
+* Structured Health Markup Language
+Structured Hypertext Markup Language
+Shml Markup Language
+
+SIML
+===============
+* Simple Markup Language
+
+SKML
+===============
+Skml Markup Language
+Simple Knowledge Markup Language
+
+SLML
+===============
+Subcellular Location Markup Language
+Simple Logic Markup Language
+* Structured Learning Markup Language
+Securities Lending Markup Language
+
+SMML
+===============
+* Simple Map Markup Language
+Simulation Modular Markup Language
+Securities Market Markup Language
+Short Message Markup Language
+Software Metrics Markup Language
+Structured Modeling Markup Language
+Simulation Module Markup Language
+
+SNML
+===============
+* Social Network Markup Language
+* Simple Network Markup Language
+Snort Markup Language
+
+SOML
+===============
+Simple Object Markup Language
+Simpleobjectmarkuplanguage
+* Sql Object Markup Language
+Spacecraft Operations Markup Language
+
+SPML
+===============
+* Service Provisioning Markup Language
+Services Provisioning Markup Language
+
+SRML
+===============
+* Simulation Reference Markup Language
+Srmlpdgsimulationreferencemarkuplanguage
+Simple Resource Markup Language
+
+SSML
+===============
+* Speech Synthesis Markup Language
+
+SUML
+===============
+* Survey Markup Language
+
+SVML
+===============
+Stored Value Markup Language
+* Smart Video Markup Language
+Standard Video Markup Language
+Semantic Visualization Markup Language
+String Vacuum Markup Language
+
+SWML
+===============
+* Signwriting Markup Language
+
+TAML
+===============
+* Testassertionmarkuplanguage
+* Test Assertion Markup Language
+Text Analysis Markup Language
+Tactical Assessment Markup Language
+Trust Axiom Markup Language
+
+TBML
+===============
+* Test Bed Markup Language
+Tbml Markup Language
+The Broadcast Markup Language
+
+TCML
+===============
+* Test Case Markup Language
+* Traffic Camera Markup Language
+Trade Control Markup Language
+Test Configuration Markup Language
+
+TDML
+===============
+* Timing Diagram Markup Language
+
+TEML
+===============
+The Markup Language
+* Text Markup Language
+Term Markup Language
+
+TGML
+===============
+Tgml Markup Language
+Tecumseh Group Markup Language
+* Tac Graphics Markup Language
+Tor Graphics Markup Language
+
+THML
+===============
+The Markup Language
+Tml Hypertext Markup Language
+The Hypertext Markup Language
+To Html Markup Language
+
+TIML
+===============
+T Is Markup Language
+
+TLML
+===============
+Tight List Markup Language
+Tightlist Markup Language
+Templatelite Markup Language
+
+TMML
+===============
+* Tcl Manual Markup Language
+* Turing Machine Markup Language
+Traffic Model Markup Language
+
+TOML
+===============
+Telescope Observation Markup Language
+Toml Markup Language
+
+TPML
+===============
+* Test Program Markup Language
+* Text Processing Markup Language
+
+TQML
+===============
+Template Query Markup Language
+
+TRML
+===============
+Term Markup Language
+
+TSML
+===============
+Tombstonemarkuplanguage
+Tombstone Markup Language
+Transition System Markup Language
+Tensible Markup Language
+Test Suite Markup Language
+Theater Scenario Markup Language
+Training Samples Markup Language
+Time Series Markup Language
+
+TTML
+===============
+* Timed Text Markup Language
+Text Markup Language
+Tagged Text Markup Language
+To Ttml Markup Language
+
+TUML
+===============
+Tumblr Markup Language
+
+TVML
+===============
+Tvml Markup Language
+Television Markup Language
+Televisual Markup Language
+
+TWML
+===============
+* Tsunami Warning Markup Language
+Twinity Markup Language
+
+TXML
+===============
+Tation Xml Markup Language
+To Xml Markup Language
+
+UBML
+===============
+Urantia Book Markup Language
+
+UCML
+===============
+Use Case Markup Language
+
+UDML
+===============
+* Universal Database Markup Language
+Unstructured Data Markup Language
+
+UEML
+===============
+Ument Markup Language
+Universal Exchange Markup Language
+
+UIML
+===============
+* User Interface Markup Language
+
+UJML
+===============
+* Ujinn Markup Language
+
+ULML
+===============
+* User Labor Markup Language
+
+UMML
+===============
+Uml Markup Language
+
+UNML
+===============
+Unified Markup Language
+Universal Markup Language
+
+UOML
+===============
+* Unstructured Operation Markup Language
+Uniqueobject Markup Language
+
+UPML
+===============
+* Universal Programming Markup Language
+Upml Markup Language
+* Universal Phonetic Markup Language
+
+URML
+===============
+Universal Markup Language
+
+USML
+===============
+* Uddi Search Markup Language
+Universal Search Markup Language
+
+UTML
+===============
+Urrent Markup Language
+
+UVML
+===============
+* Universal Voting Markup Language
+
+VAML
+===============
+* Video Annotation Markup Language
+
+VBML
+===============
+* Voice Browser Markup Language
+Virtual Body Markup Language
+Voobly Markup Language
+
+VCML
+===============
+* Value Chain Markup Language
+* Video Caption Markup Language
+Vodafone Content Markup Language
+Virtual Cluster Markup Language
+
+VDML
+===============
+* Visual Data Markup Language
+Virtual Disk Markup Language
+
+VEML
+===============
+* Video Event Markup Language
+Vent Markup Language
+Video Markup Language
+
+VFML
+===============
+Vodafone Markup Language
+
+VGML
+===============
+* Vector Graphics Markup Language
+Virtual Globe Markup Language
+
+VHML
+===============
+* Virtual Human Markup Language
+
+VIML
+===============
+Voice Interface Markup Language
+* Virtual Instruments Markup Language
+
+VJML
+===============
+Video Jockey Markup Language
+* Visual Jockey Markup Language
+
+VLML
+===============
+View Layout Markup Language
+Video Layout Markup Language
+Virtual Laboratory Markup Language
+Virtual Lego Markup Language
+Vocabulary List Markup Language
+
+VMML
+===============
+Virtual Musician Markup Language
+Virtual Music Markup Language
+Vehicle Messaging Markup Language
+
+VOML
+===============
+* Visual Object Markup Language
+Volunteer Opportunity Markup Language
+
+VPML
+===============
+Virtual Pet Markup Language
+Variant Part Markup Language
+Virtual Plastic Markup Language
+Visual Pipeline Markup Language
+
+VRML
+===============
+* Virtual Reality Markup Language
+
+VTML
+===============
+Visual Tool Markup Language
+* Visual Tools Markup Language
+Voicetext Markup Language
+
+VWML
+===============
+* Virtual World Markup Language
+Vw Markup Language
+
+VZML
+===============
+Vz Markup Language
+
+WAML
+===============
+* Web Application Markup Language
+Waml Markup Language
+Wave Markup Language
+
+WBML
+===============
+Webbase Markup Language
+Web Browser Markup Language
+* Web Markup Language
+Web Base Markup Language
+
+WCML
+===============
+* Webcomposition Markup Language
+Web Composition Markup Language
+
+WDML
+===============
+* Weapons Data Markup Language
+* Wireless Device Markup Language
+
+WEML
+===============
+* Web Engine Markup Language
+Webengine Markup Language
+
+WFML
+===============
+* Windows Forms Markup Language
+
+WGML
+===============
+* Wheresgeorge Markup Language
+Weather Geography Markup Language
+
+WHML
+===============
+Writing Hydrological Markup Language
+
+WIML
+===============
+Wiki Markup Language
+Wireless Markup Language
+
+WKML
+===============
+* Wiki Markup Language
+Writing Keyhole Markup Language
+
+WLML
+===============
+* Wireless Markup Language
+Wml Markup Language
+
+WMML
+===============
+* Web Media Markup Language
+Washing Machine Markup Language
+
+WNML
+===============
+Wetlands Network Markup Language
+
+WOML
+===============
+World Outline Markup Language
+Water Observation Markup Language
+Water Observations Markup Language
+
+WPML
+===============
+* Web Page Markup Language
+Web Publishers Markup Language
+
+WQML
+===============
+* Webquest Markup Language
+
+WSML
+===============
+Website Markup Language
+* Web Services Markup Language
+Web Server Markup Language
+
+WVML
+===============
+Webview Markup Language
+
+WWML
+===============
+* Worldwind Markup Language
+World Wind Markup Language
+Worldwind Worldwind Markup Language
+
+XAML
+===============
+* Xtensible Application Markup Language
+Xaml Markup Language
+
+XBML
+===============
+* Xtensible Markup Language
+
+XEML
+===============
+* Xtensible Markup Language
+
+XFML
+===============
+Xml Filtering Markup Language
+Xml Filter Markup Language
+
+XHML
+===============
+* Xtensible Hypertext Markup Language
+Xhtml Markup Language
+
+XIML
+===============
+Xtensible Interactive Markup Language
+* Xtensible Interface Markup Language
+
+XLML
+===============
+* Xtensible Markup Language
+* Xml Markup Language
+
+XMML
+===============
+* Xml Markup Language
+
+XNML
+===============
+* Xtensible Markup Language
+
+XPML
+===============
+* Xtreme Programming Markup Language
+* Xpp Markup Language
+Xtensible Programming Markup Language
+Xtended Policy Markup Language
+Xpml Markup Language
+
+XQML
+===============
+Xtensible Query Markup Language
+Xqueeze Markup Language
+
+XRML
+===============
+* Xtensible Rights Markup Language
+Xtensible Rule Markup Language
+
+XSML
+===============
+* Xtensible Markup Language
+
+XTML
+===============
+* Xt Markup Language
+Xhtml Markup Language
+
+XVML
+===============
+Xtended Validation Markup Language
+Xtensible Vizbuilder Markup Language
+
+YAML
+===============
+Yet Another Markup Language
+Yamlaintmarkuplanguage
+Yaml Aint Markup Language
+Yaml Markup Language
+
+YDML
+===============
+Y Different Markup Language
+
+YEML
+===============
+Ypertext Markup Language
+
+YFML
+===============
+* Your Favorite Markup Language
+
+YHML
+===============
+Yhole Markup Language
+
+YIML
+===============
+Yapanda Intelligent Markup Language
+Yaml Is Markup Language
+Yiml Isa Markup Language
+Yapanda Intelligence Markup Language
+
+YKML
+===============
+Y Keyhole Markup Language
+
+YMML
+===============
+Yourmom Markup Language
+
+YOML
+===============
+* Your Own Markup Language
+Y Own Markup Language
+
+YPML
+===============
+Yellow Pages Markup Language
+
+YTML
+===============
+Yper Text Markup Language
+* Ypertext Markup Language
+
+ZCML
+===============
+* Zope Configuration Markup Language
+
+ZGML
+===============
+Zed Generalized Markup Language
+
+ZIML
+===============
+Zooming Interface Markup Language
+Zoomable Interface Markup Language
+
+ZKML
+===============
+Zk Markup Language
+
+ZPML
+===============
+Zensis Portable Markup Language
+
+ZSML
+===============
+Zeroboard Skin Markup Language
+Zerobod Skin Markup Language
+</code></pre>
+
+<p>Savvy ( and by now fatigued ) readers will notice that there are <code>__ML</code> sets that <strong>did not appear in the above list</strong>.  These are the variations that are still available.  They are&#8230;</p>
+
+<h2>None of the markups</h2>
+
+<pre><code>AJML
+AQML
+AUML
+AWML
+AXML
+AYML
+BFML
+BJML
+BOML
+BQML
+BTML
+BXML
+BYML
+BZML
+CCML
+CJML
+CKML
+CUML
+CYML
+CZML
+DYML
+EUML
+EYML
+EZML
+FIML
+FJML
+FKML
+FNML
+FUML
+FVML
+FWML
+FYML
+FZML
+GBML
+GJML
+GKML
+GTML
+GXML
+GZML
+HBML
+HCML
+HDML
+HFML
+HGML
+HJML
+HNML
+HOML
+HVML
+HZML
+IJML
+IYML
+IZML
+JFML
+JIML
+JJML
+JKML
+JLML
+JNML
+JOML
+JRML
+JTML
+JVML
+JXML
+JYML
+KAML
+KCML
+KEML
+KIML
+KJML
+KKML
+KNML
+KTML
+KUML
+KVML
+KXML
+KYML
+KZML
+LFML
+LHML
+LLML
+LQML
+LTML
+LUML
+LXML
+LZML
+MJML
+MMML
+MTML
+MUML
+MXML
+MYML
+NFML
+NGML
+NJML
+NYML
+NZML
+OJML
+OKML
+OUML
+OYML
+OZML
+PJML
+PUML
+PXML
+PZML
+QAML
+QBML
+QEML
+QGML
+QHML
+QIML
+QLML
+QNML
+QOML
+QQML
+QSML
+QTML
+QUML
+QVML
+QWML
+QYML
+QZML
+RHML
+RJML
+RUML
+RXML
+RYML
+RZML
+SJML
+SQML
+STML
+SXML
+SYML
+SZML
+TFML
+TJML
+TKML
+TNML
+TYML
+TZML
+UAML
+UFML
+UGML
+UHML
+UKML
+UQML
+UUML
+UWML
+UXML
+UYML
+UZML
+VKML
+VNML
+VQML
+VSML
+VUML
+VVML
+VXML
+VYML
+WJML
+WRML
+WTML
+WUML
+WXML
+WYML
+WZML
+XCML
+XDML
+XGML
+XJML
+XKML
+XOML
+XUML
+XWML
+XXML
+XYML
+XZML
+YBML
+YCML
+YGML
+YJML
+YLML
+YNML
+YQML
+YRML
+YSML
+YUML
+YVML
+YWML
+YXML
+YYML
+YZML
+ZAML
+ZBML
+ZDML
+ZEML
+ZFML
+ZHML
+ZJML
+ZLML
+ZMML
+ZNML
+ZOML
+ZQML
+ZRML
+ZTML
+ZUML
+ZVML
+ZWML
+ZXML
+ZYML
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Dumbwaiter v0.0.1]]></title>
