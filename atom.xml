@@ -4,7 +4,7 @@
   <title><![CDATA[Useful Platitudes]]></title>
   <link href="http://danielmendel.github.com/atom.xml" rel="self"/>
   <link href="http://danielmendel.github.com/"/>
-  <updated>2013-04-08T18:20:22-04:00</updated>
+  <updated>2013-04-08T18:41:52-04:00</updated>
   <id>http://danielmendel.github.com/</id>
   <author>
     <name><![CDATA[Daniel Mendel]]></name>
@@ -44,7 +44,7 @@
 <!-- more -->
 
 
-<p>It creates an object a <code>count</code> method which increments a couple of private variables and then returns their sum.</p>
+<p>It creates an object with a <code>count</code> method which increments a couple of private variables and then returns their sum.</p>
 
 <p>Let&#8217;s create one and run <code>count</code> a few times:</p>
 
