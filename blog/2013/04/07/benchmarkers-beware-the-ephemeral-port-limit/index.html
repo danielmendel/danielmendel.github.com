@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Benchmarkers, beware the ephemeral port limit - Useful Platitudes</title>
+  <meta name="author" content="Daniel Mendel">
+
+  
+  <meta name="description" content="If you&#8217;re benchmarking a web server using tools like ab, weighttp or siege you may encounter an issue that could skew your results – hanging &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://danielmendel.github.com/blog/2013/04/07/benchmarkers-beware-the-ephemeral-port-limit/">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Useful Platitudes" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38700939-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Useful Platitudes</a><img src="/images/me.png" width="50" style="position:relative;top:15px;" /></h1>
+  
+    <h2>Notes on programming by Daniel Mendel</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:danielmendel.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Benchmarkers, Beware the Ephemeral Port Limit</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-07T01:38:00-04:00" pubdate data-updated="true">Apr 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>If you&#8217;re benchmarking a web server using tools like <code>ab</code>, <code>weighttp</code> or <code>siege</code> you may encounter an issue that could skew your results – <strong>hanging the connection pool</strong>.  To illustrate this point, let&#8217;s look at a couple of benchmarks using <code>siege</code> on <code>OS X</code>:</p>
+
+<!-- more -->
+
+
+<p>The first makes a total of <strong>16,300</strong> requests:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Transactions:               16300 hits
+</span><span class='line'>Availability:           100.00 %
+</span><span class='line'>Elapsed time:            12.03 secs
+</span><span class='line'>Data transferred:         0.09 MB
+</span><span class='line'>Response time:                0.09 secs
+</span><span class='line'>Transaction rate:      1350.79 trans/sec
+</span><span class='line'>Throughput:               0.01 MB/sec
+</span><span class='line'>Concurrency:            122.91
+</span><span class='line'>Successful transactions:       16300
+</span><span class='line'>Failed transactions:             0
+</span><span class='line'>Longest transaction:          0.15
+</span><span class='line'>Shortest transaction:         0.00</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The second makes a total of <strong>16,384</strong> requests:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Transactions:               16384 hits
+</span><span class='line'>Availability:           100.00 %
+</span><span class='line'>Elapsed time:            21.73 secs
+</span><span class='line'>Data transferred:         0.09 MB
+</span><span class='line'>Response time:                0.16 secs
+</span><span class='line'>Transaction rate:       753.57 trans/sec
+</span><span class='line'>Throughput:               0.00 MB/sec
+</span><span class='line'>Concurrency:            121.28
+</span><span class='line'>Successful transactions:       16384
+</span><span class='line'>Failed transactions:             0
+</span><span class='line'>Longest transaction:          4.65
+</span><span class='line'>Shortest transaction:         0.00</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The second reports the server to be about <strong>50% slower</strong> than the first!</p>
+
+<p>If the processes are monitored during the second test, both <code>siege</code> and the server process spin up to full capacity for an extended duration as one would expect, but at some point they become <strong>totally idle for about 15 seconds</strong> before kicking back into action to finish the test.</p>
+
+<p><strong>What gives?</strong></p>
+
+<h2>Ephemeral Port Range</h2>
+
+<p>To understand what is happening, we have to look at how <code>TCP</code> connections are handled by the operating system.  Whenever a connection is made between a client and server, the system binds that connection to an <strong>ephemeral port</strong> – a set of ports specified at the high end of the valid port range.  This is how to reveal what the ephemeral port range is on your system:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; sysctl net.inet.ip.portrange.first net.inet.ip.portrange.last
+</span><span class='line'>net.inet.ip.portrange.first: 49152
+</span><span class='line'>net.inet.ip.portrange.last: 65535</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The total number of ephemeral ports available on <code>OS X</code> is <strong>16,383</strong> ( on Linux it is usually <strong>28,232</strong> – it is possible to <a href="http://stackoverflow.com/a/1217100/464772">increase the ephemeral port range on OSX</a> ).  You might think that this should be more than enough to run our benchmarks since we have only <strong>125 simultanious connections</strong> occuring at any given time.  However, when one of these ports is closed <strong>it does not become immediately available</strong> for a new request.</p>
+
+<h2>TCP Connection States</h2>
+
+<p>During the lifetime of a request, each port goes through a series of states, from <code>SYN_SENT</code> when establishing a connection to <code>ESTABLISHED</code> when communication is actively happening, through a series of closing states eventually culminating in <code>TIME_WAIT</code> after the port has been closed.</p>
+
+<p>During <code>TIME_WAIT</code> the port is held in limbo to ensure any remaining packets are not erroniously provided to a fresh connection.  ( Check the current state of ports in use by running <code>netstat -p tcp</code>, get a full overview of the states in the <code>man netstat</code> text )</p>
+
+<p>The duration of the <code>TIME_WAIT</code> state is the <strong>Maximum Segment Lifetime</strong> and is defined in <code>net.inet.tcp.msl</code>.  We can check what it is:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; sysctl net.inet.tcp.msl
+</span><span class='line'>net.inet.tcp.msl: 15000</span></code></pre></td></tr></table></div></figure>
+
+
+<p>15 seconds.  <strong>Bingo!</strong> There&#8217;s the slowdown we&#8217;ve had skewing our results.</p>
+
+<p>Note that this limitation does not affect real-world requests to a live server because each <code>TCP</code> connection is defined by the tuple of <code>source IP</code>, <code>source port</code>, <code>destination IP</code> and <code>destination port</code> – so the ephemeral port limit <strong>only applies to a single client / server pair</strong>.</p>
+
+<p>It&#8217;s possible to reconfigure your kernel to allow a lot more requests, see Richard Jones&#8217;s <a href="http://www.metabrew.com/article/a-million-user-comet-application-with-mochiweb-part-1">A Million User Comet Application with Mochiweb Part I</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Daniel Mendel</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-07T01:38:00-04:00" pubdate data-updated="true">Apr 7<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://danielmendel.github.com/blog/2013/04/07/benchmarkers-beware-the-ephemeral-port-limit/" data-via="" data-counturl="http://danielmendel.github.com/blog/2013/04/07/benchmarkers-beware-the-ephemeral-port-limit/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/04/02/all-of-the-markups/" title="Previous Post: All of the Markups">&laquo; All of the Markups</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/04/08/another-javascript-scope-gotcha/" title="Next Post: Another Javascript Scope Gotcha">Another Javascript Scope Gotcha &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/08/another-javascript-scope-gotcha/">Another Javascript Scope Gotcha</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/07/benchmarkers-beware-the-ephemeral-port-limit/">Benchmarkers, beware the ephemeral port limit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/02/all-of-the-markups/">All of the Markups</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/04/dumbwaiter-v0-dot-0-1/">Dumbwaiter v0.0.1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/25/new-compound-animations-in-glitz-dot-js/">New compound animations in glitz.js</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/danielmendel">@danielmendel</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'danielmendel',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Daniel Mendel -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

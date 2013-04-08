@@ -25,12 +25,22 @@
         <lastmod>2013-04-02T17:43:55-04:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://danielmendel.github.com/blog/2013/04/07/benchmarkers-beware-the-ephemeral-port-limit/
+        </loc>
+        <lastmod>2013-04-08T18:13:00-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://danielmendel.github.com/blog/2013/04/08/another-javascript-scope-gotcha/</loc>
+        <lastmod>2013-04-08T18:18:53-04:00</lastmod>
+    </url>
+    <url>
         <loc>http://danielmendel.github.com/blog/archives/</loc>
-        <lastmod>2013-04-02T17:43:55-04:00</lastmod>
+        <lastmod>2013-04-08T18:18:53-04:00</lastmod>
     </url>
     <url>
         <loc>http://danielmendel.github.com/</loc>
-        <lastmod>2013-04-02T17:43:55-04:00</lastmod>
+        <lastmod>2013-04-08T18:18:53-04:00</lastmod>
     </url>
     <url>
         <loc>http://danielmendel.github.com/robots.txt</loc>

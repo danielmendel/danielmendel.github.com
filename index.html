@@ -9,7 +9,16 @@
   <meta name="author" content="Daniel Mendel">
 
   
-  <meta name="description" content="I recently started taking steps to revive ENML.js, a library I wrote a few years ago for defining and parsing Domain Specfic Markup Languages. Since &hellip;">
+  <meta name="description" content="Consider this simple constructor: 1
+2
+3
+4
+5
+6
+7
+8
+function Counter(){ var a = b = 0; this.count = function(){ a++; b++; return a + b; }
+} ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +85,109 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/08/another-javascript-scope-gotcha/">Another Javascript Scope Gotcha</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-08T02:37:00-04:00" pubdate data-updated="true">Apr 8<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Consider this simple constructor:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">Counter</span><span class="p">(){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">count</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>      <span class="nx">a</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>      <span class="nx">b</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/08/another-javascript-scope-gotcha/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/07/benchmarkers-beware-the-ephemeral-port-limit/">Benchmarkers, Beware the Ephemeral Port Limit</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-07T01:38:00-04:00" pubdate data-updated="true">Apr 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you&#8217;re benchmarking a web server using tools like <code>ab</code>, <code>weighttp</code> or <code>siege</code> you may encounter an issue that could skew your results – <strong>hanging the connection pool</strong>.  To illustrate this point, let&#8217;s look at a couple of benchmarks using <code>siege</code> on <code>OS X</code>:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/07/benchmarkers-beware-the-ephemeral-port-limit/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -336,6 +448,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/04/08/another-javascript-scope-gotcha/">Another Javascript Scope Gotcha</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/07/benchmarkers-beware-the-ephemeral-port-limit/">Benchmarkers, beware the ephemeral port limit</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/02/all-of-the-markups/">All of the Markups</a>
       </li>
     
@@ -345,14 +465,6 @@
     
       <li class="post">
         <a href="/blog/2013/02/25/new-compound-animations-in-glitz-dot-js/">New compound animations in glitz.js</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/20/cool-stuff-i-learned-doing-code-review/">Cool stuff I learned doing code review</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/20/subclassing-javascript-arrays/">Subclassing Javascript Arrays</a>
       </li>
     
   </ul>

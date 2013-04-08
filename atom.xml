@@ -4,7 +4,7 @@
   <title><![CDATA[Useful Platitudes]]></title>
   <link href="http://danielmendel.github.com/atom.xml" rel="self"/>
   <link href="http://danielmendel.github.com/"/>
-  <updated>2013-04-02T17:43:59-04:00</updated>
+  <updated>2013-04-08T18:20:22-04:00</updated>
   <id>http://danielmendel.github.com/</id>
   <author>
     <name><![CDATA[Daniel Mendel]]></name>
@@ -12,6 +12,202 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Another Javascript Scope Gotcha]]></title>
+    <link href="http://danielmendel.github.com/blog/2013/04/08/another-javascript-scope-gotcha/"/>
+    <updated>2013-04-08T02:37:00-04:00</updated>
+    <id>http://danielmendel.github.com/blog/2013/04/08/another-javascript-scope-gotcha</id>
+    <content type="html"><![CDATA[<p>Consider this simple constructor:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">Counter</span><span class="p">(){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">count</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>      <span class="nx">a</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>      <span class="nx">b</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<p>It creates an object a <code>count</code> method which increments a couple of private variables and then returns their sum.</p>
+
+<p>Let&#8217;s create one and run <code>count</code> a few times:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">counterA</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Counter</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">counterA</span><span class="p">.</span><span class="nx">count</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 2</span>
+</span><span class='line'><span class="nx">counterA</span><span class="p">.</span><span class="nx">count</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 4</span>
+</span><span class='line'><span class="nx">counterA</span><span class="p">.</span><span class="nx">count</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 6</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Great! It works just as expected.  Let&#8217;s create another one:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">counterB</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Counter</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">counterB</span><span class="p">.</span><span class="nx">count</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 5</span>
+</span><span class='line'><span class="nx">counterB</span><span class="p">.</span><span class="nx">count</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 7</span>
+</span><span class='line'><span class="nx">counterB</span><span class="p">.</span><span class="nx">count</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 9</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What the heck? That&#8217;s not what we expected to happen – remember when we created those private variables?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>var</code> keyword only applies to the first variable in a mass assignment expression, so <code>b</code> is a global! <strong>Don&#8217;t mix mass assignment and <code>var</code>.</strong></p>
+
+<p><span style="font-size:0.7em">with <a href="https://github.com/thomasballinger">Thomas Ballinger</a></span></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Benchmarkers, beware the ephemeral port limit]]></title>
+    <link href="http://danielmendel.github.com/blog/2013/04/07/benchmarkers-beware-the-ephemeral-port-limit/"/>
+    <updated>2013-04-07T01:38:00-04:00</updated>
+    <id>http://danielmendel.github.com/blog/2013/04/07/benchmarkers-beware-the-ephemeral-port-limit</id>
+    <content type="html"><![CDATA[<p>If you&#8217;re benchmarking a web server using tools like <code>ab</code>, <code>weighttp</code> or <code>siege</code> you may encounter an issue that could skew your results – <strong>hanging the connection pool</strong>.  To illustrate this point, let&#8217;s look at a couple of benchmarks using <code>siege</code> on <code>OS X</code>:</p>
+
+<!-- more -->
+
+
+<p>The first makes a total of <strong>16,300</strong> requests:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Transactions:               16300 hits
+</span><span class='line'>Availability:           100.00 %
+</span><span class='line'>Elapsed time:            12.03 secs
+</span><span class='line'>Data transferred:         0.09 MB
+</span><span class='line'>Response time:                0.09 secs
+</span><span class='line'>Transaction rate:      1350.79 trans/sec
+</span><span class='line'>Throughput:               0.01 MB/sec
+</span><span class='line'>Concurrency:            122.91
+</span><span class='line'>Successful transactions:       16300
+</span><span class='line'>Failed transactions:             0
+</span><span class='line'>Longest transaction:          0.15
+</span><span class='line'>Shortest transaction:         0.00</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The second makes a total of <strong>16,384</strong> requests:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Transactions:               16384 hits
+</span><span class='line'>Availability:           100.00 %
+</span><span class='line'>Elapsed time:            21.73 secs
+</span><span class='line'>Data transferred:         0.09 MB
+</span><span class='line'>Response time:                0.16 secs
+</span><span class='line'>Transaction rate:       753.57 trans/sec
+</span><span class='line'>Throughput:               0.00 MB/sec
+</span><span class='line'>Concurrency:            121.28
+</span><span class='line'>Successful transactions:       16384
+</span><span class='line'>Failed transactions:             0
+</span><span class='line'>Longest transaction:          4.65
+</span><span class='line'>Shortest transaction:         0.00</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The second reports the server to be about <strong>50% slower</strong> than the first!</p>
+
+<p>If the processes are monitored during the second test, both <code>siege</code> and the server process spin up to full capacity for an extended duration as one would expect, but at some point they become <strong>totally idle for about 15 seconds</strong> before kicking back into action to finish the test.</p>
+
+<p><strong>What gives?</strong></p>
+
+<h2>Ephemeral Port Range</h2>
+
+<p>To understand what is happening, we have to look at how <code>TCP</code> connections are handled by the operating system.  Whenever a connection is made between a client and server, the system binds that connection to an <strong>ephemeral port</strong> – a set of ports specified at the high end of the valid port range.  This is how to reveal what the ephemeral port range is on your system:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; sysctl net.inet.ip.portrange.first net.inet.ip.portrange.last
+</span><span class='line'>net.inet.ip.portrange.first: 49152
+</span><span class='line'>net.inet.ip.portrange.last: 65535</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The total number of ephemeral ports available on <code>OS X</code> is <strong>16,383</strong> ( on Linux it is usually <strong>28,232</strong> – it is possible to <a href="http://stackoverflow.com/a/1217100/464772">increase the ephemeral port range on OSX</a> ).  You might think that this should be more than enough to run our benchmarks since we have only <strong>125 simultanious connections</strong> occuring at any given time.  However, when one of these ports is closed <strong>it does not become immediately available</strong> for a new request.</p>
+
+<h2>TCP Connection States</h2>
+
+<p>During the lifetime of a request, each port goes through a series of states, from <code>SYN_SENT</code> when establishing a connection to <code>ESTABLISHED</code> when communication is actively happening, through a series of closing states eventually culminating in <code>TIME_WAIT</code> after the port has been closed.</p>
+
+<p>During <code>TIME_WAIT</code> the port is held in limbo to ensure any remaining packets are not erroniously provided to a fresh connection.  ( Check the current state of ports in use by running <code>netstat -p tcp</code>, get a full overview of the states in the <code>man netstat</code> text )</p>
+
+<p>The duration of the <code>TIME_WAIT</code> state is the <strong>Maximum Segment Lifetime</strong> and is defined in <code>net.inet.tcp.msl</code>.  We can check what it is:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; sysctl net.inet.tcp.msl
+</span><span class='line'>net.inet.tcp.msl: 15000</span></code></pre></td></tr></table></div></figure>
+
+
+<p>15 seconds.  <strong>Bingo!</strong> There&#8217;s the slowdown we&#8217;ve had skewing our results.</p>
+
+<p>Note that this limitation does not affect real-world requests to a live server because each <code>TCP</code> connection is defined by the tuple of <code>source IP</code>, <code>source port</code>, <code>destination IP</code> and <code>destination port</code> – so the ephemeral port limit <strong>only applies to a single client / server pair</strong>.</p>
+
+<p>It&#8217;s possible to reconfigure your kernel to allow a lot more requests, see Richard Jones&#8217;s <a href="http://www.metabrew.com/article/a-million-user-comet-application-with-mochiweb-part-1">A Million User Comet Application with Mochiweb Part I</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[All of the Markups]]></title>
